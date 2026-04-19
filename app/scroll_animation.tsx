@@ -7,13 +7,16 @@ import { ReactNode } from "react";
 
 export default function ScrollAnimation({
   ref,
+  id,
   children,
 }: {
   ref?: React.Ref<HTMLElement>;
+  id?: string;
   children?: ReactNode;
 }) {
   return (
     <motion.section
+      id={id}
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{
