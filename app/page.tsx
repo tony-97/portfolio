@@ -125,29 +125,23 @@ export default function Home() {
     },
   ];
 
-  const sections = [
+  const sections = defineSections([
     { id: "hero", label: "Home", component: HeroSection },
     {
       id: "skills",
       label: "Skills",
-      component: ({ id, ref }: { id: string; ref: React.Ref<HTMLElement> }) => (
-        <SkillsSection id={id} ref={ref} skills={skills}></SkillsSection>
-      ),
+      component: SkillsSection,
+      props: { skills },
     },
     {
       id: "projects",
       label: "Projects",
-      component: ({ id, ref }: { id: string; ref: React.Ref<HTMLElement> }) => (
-        <ProjectsSection
-          id={id}
-          ref={ref}
-          projects={projects}
-        ></ProjectsSection>
-      ),
+      component: ProjectsSection,
+      props: { projects },
     },
     { id: "about", label: "About", component: AboutSection },
     { id: "contact", label: "Contact", component: ContactSection },
-  ];
+  ]);
 
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
 
@@ -156,18 +150,19 @@ export default function Home() {
       <Navigation sections={sections} sectionRefs={sectionRefs}></Navigation>
       <main className="max-w-5xl mx-auto px-6 pt-24 pb-20">
         {sections.map((section) => {
-          const Component = section.component;
+          const Component = section.component as React.ElementType;
           return (
             <Component
               key={section.id}
               id={section.id}
-              ref={(node) => {
+              ref={(node: HTMLElement | null) => {
                 if (node) {
                   sectionRefs.current.set(section.id, node);
                 } else {
                   sectionRefs.current.delete(section.id);
                 }
               }}
+              {...(section.props ?? {})}
             ></Component>
           );
         })}
