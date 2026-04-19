@@ -36,6 +36,19 @@ import Navigation from "./navigation";
 import ProjectsSection from "./projects";
 import SkillsSection from "./skills";
 
+type Section<T extends React.ElementType> = {
+  id: string;
+  label: string;
+  component: T;
+  props?: Partial<React.ComponentProps<T>>;
+};
+
+function defineSections<T extends React.ElementType[]>(
+  sections: [...{ [K in keyof T]: Section<T[K]> }],
+) {
+  return sections;
+}
+
 export default function Home() {
   const projects = [
     {
