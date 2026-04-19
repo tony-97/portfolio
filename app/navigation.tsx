@@ -1,6 +1,6 @@
 import * as motion from "motion/react-client";
 
-import { RefObject, useEffect } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 export default function Navigation({
   sections,
@@ -9,21 +9,23 @@ export default function Navigation({
   sections: { id: string; label: string }[];
   sectionRefs: RefObject<Map<string, HTMLElement>>;
 }) {
+  const [activeSection, setActiveSection] = useState("");
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
           }
         });
       },
       { threshold: 0.51 },
     );
-    sectionRefs.forEach((ref) => {
+    sectionRefs.current.forEach((ref) => {
       observer.observe(ref);
     });
 
-    return observer.disconnect();
+    return () => observer.disconnect();
   }, []);
   return (
     <motion.nav
@@ -40,18 +42,23 @@ export default function Navigation({
           {sections.map((section, index) => (
             <li key={index}>
               <a
-                ref={(node) => {
-                  if (node) {
-                    sectionRefs.current.set(section.id, node);
-                  } else {
-                    sectionRefs.current.delete(section.id);
-                  }
-                }}
                 href={`#${section.id}`}
-                className="hover:text-white transition-colors"
+                className={`relative hover:text-white  ${activeSection == section.id ? "text-white" : ""} transition-colors`}
               >
                 {section.label}
               </a>
+              {activeSection == section.id && (
+                <motion.div
+                  layoutId="active-indicator"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
+                  }}
+                  className="bottom-0 left-0 right-0 h-0.5 rounded-full bg-white"
+                ></motion.div>
+              )}
             </li>
           ))}
         </ul>
