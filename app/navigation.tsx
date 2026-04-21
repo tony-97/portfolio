@@ -3,9 +3,11 @@ import * as motion from "motion/react-client";
 import { RefObject, useEffect, useState } from "react";
 
 export default function Navigation({
+  ref,
   sections,
   sectionRefs,
 }: {
+  ref?: React.Ref<HTMLElement>;
   sections: { id: string; label: string }[];
   sectionRefs: RefObject<Map<string, HTMLElement>>;
 }) {
@@ -29,10 +31,11 @@ export default function Navigation({
   }, []);
   return (
     <motion.nav
+      ref={ref}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed w-full top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800"
+      className="sticky overflow-x-hidden w-full top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800"
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">

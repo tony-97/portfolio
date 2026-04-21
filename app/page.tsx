@@ -50,6 +50,9 @@ function defineSections<T extends React.ElementType[]>(
 }
 
 export default function Home() {
+  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const navBarRef = useRef<HTMLElement>(null);
+
   const projects = [
     {
       title: "CloudCast Weather",
@@ -126,7 +129,7 @@ export default function Home() {
   ];
 
   const sections = defineSections([
-    { id: "hero", label: "Home", component: HeroSection },
+    { id: "hero", label: "Home", component: HeroSection, props: { navBarRef } },
     {
       id: "skills",
       label: "Skills",
@@ -143,12 +146,14 @@ export default function Home() {
     { id: "contact", label: "Contact", component: ContactSection },
   ]);
 
-  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
-
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
-      <Navigation sections={sections} sectionRefs={sectionRefs}></Navigation>
-      <main className="max-w-5xl mx-auto px-6 pt-24 pb-20">
+    <div className="min-h-screen flex flex-col bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
+      <Navigation
+        ref={navBarRef}
+        sections={sections}
+        sectionRefs={sectionRefs}
+      ></Navigation>
+      <main className="max-w-5xl mx-auto px-6">
         {sections.map((section) => {
           const Component = section.component as React.ElementType;
           return (

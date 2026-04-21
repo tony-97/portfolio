@@ -1,17 +1,40 @@
 "use client";
 import { ChevronDown, Code2 } from "lucide-react";
 
+import { RefObject, useEffect, useState } from "react";
 import ScrollAnimation from "./scroll_animation";
 
 export default function HeroSection({
   id,
   ref,
+  navBarRef,
 }: {
   id: string;
   ref: React.Ref<HTMLElement>;
+  navBarRef?: RefObject<HTMLElement | null>;
 }) {
+  const [navH, setNavH] = useState(0);
+
+  if (navBarRef) {
+    useEffect(() => {
+      const ro = new ResizeObserver(([entry]) => {
+        setNavH(entry.contentRect.height);
+      });
+
+      if (navBarRef.current) {
+        ro.observe(navBarRef.current);
+      }
+
+      return () => ro.disconnect();
+    }, []);
+  }
+
   return (
-    <ScrollAnimation id={id} ref={ref}>
+    <ScrollAnimation
+      style={{ height: `calc(100svh - ${navH}px)` }}
+      id={id}
+      ref={ref}
+    >
       <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 w-fit mb-6 text-sm text-blue-400">
         <Code2 className="w-4 h-4" />
         <span>Hello, World!</span>
