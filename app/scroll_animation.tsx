@@ -24,7 +24,7 @@ export default function ScrollAnimation({
         y: 0,
       }}
       viewport={{
-        margin: "-100px",
+        amount: 0.2,
       }}
       transition={{
         duration: 0.8,
