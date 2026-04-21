@@ -10,11 +10,7 @@ export default function ContactSection({
 }) {
   return (
     <ScrollAnimation id={id} ref={ref}>
-      <section
-        id={id}
-        ref={ref}
-        className="py-20 border-t border-slate-800 text-center"
-      >
+      <section className="py-20 border-t border-slate-800 text-center">
         <h2 className="text-4xl font-bold text-white mb-6">Let's Connect!</h2>
         <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg">
           I am currently looking for my first full-time role as a Junior

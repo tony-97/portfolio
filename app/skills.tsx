@@ -20,7 +20,7 @@ export default function SkillsSection({
 }) {
   return (
     <ScrollAnimation id={id} ref={ref}>
-      <section id="skills" className="py-20 border-t border-slate-800">
+      <section className="py-20 border-t border-slate-800">
         <h2 className="text-3xl font-bold text-white mb-10 flex items-center">
           <span className="text-blue-400 mr-3">01.</span> My Technical Toolkit
         </h2>
