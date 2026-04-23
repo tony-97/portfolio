@@ -55,17 +55,17 @@ export default function HeroSection({
         problem-solving, a freshly honed technical toolkit, and a portfolio of
         projects built from the ground up.
       </p>
-      <div className="flex items-center space-x-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
         <a
           href="#projects"
-          className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors flex items-center"
+          className="w-full sm:w-auto justify-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors flex items-center"
         >
           View My Work
           <ChevronDown className="w-4 h-4 ml-2" />
         </a>
         <a
           href="#contact"
-          className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg border border-slate-700 transition-colors"
+          className="w-full sm:w-auto text-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg border border-slate-700 transition-colors"
         >
           Contact Me
         </a>

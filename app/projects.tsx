@@ -39,7 +39,7 @@ export default function ProjectsSection({
               className="bg-slate-800/30 rounded-2xl border border-slate-700 overflow-hidden hover:border-slate-500 transition-colors duration-300"
             >
               <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4 sm:gap-0">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">
                       {project.title}
