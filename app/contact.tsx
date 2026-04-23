@@ -1,15 +1,9 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import ScrollAnimation from "./scroll_animation";
 
-export default function ContactSection({
-  id,
-  ref,
-}: {
-  id: string;
-  ref: React.Ref<HTMLElement>;
-}) {
+export default function ContactSection({ id }: { id: string }) {
   return (
-    <ScrollAnimation id={id} ref={ref}>
+    <ScrollAnimation id={id}>
       <section className="py-20 border-t border-slate-800 text-center">
         <h2 className="text-4xl font-bold text-white mb-6">Let's Connect!</h2>
         <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg">

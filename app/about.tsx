@@ -1,14 +1,8 @@
 import ScrollAnimation from "./scroll_animation";
 
-export default function AboutSection({
-  id,
-  ref,
-}: {
-  id: string;
-  ref: React.Ref<HTMLElement>;
-}) {
+export default function AboutSection({ id }: { id: string }) {
   return (
-    <ScrollAnimation id={id} ref={ref}>
+    <ScrollAnimation id={id}>
       <section className="py-20 border-t border-slate-800">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold text-white mb-6 flex items-center">

@@ -5,7 +5,6 @@ import { JSX } from "react";
 export default function SkillsSection({
   skills,
   id,
-  ref,
 }: {
   skills: {
     category: string;
@@ -16,10 +15,9 @@ export default function SkillsSection({
     }[];
   }[];
   id: string;
-  ref: React.Ref<HTMLElement>;
 }) {
   return (
-    <ScrollAnimation id={id} ref={ref}>
+    <ScrollAnimation id={id}>
       <section className="py-20 border-t border-slate-800">
         <h2 className="text-3xl font-bold text-white mb-10 flex items-center">
           <span className="text-blue-400 mr-3">01.</span> My Technical Toolkit

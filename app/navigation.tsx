@@ -1,36 +1,30 @@
+"use client";
+
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLandingPage } from "./landing_page_context";
 
 export default function Navigation({
-  ref,
   sections,
-  sectionRefs,
 }: {
-  ref?: React.Ref<HTMLElement>;
   sections: { id: string; label: string }[];
-  sectionRefs: RefObject<Map<string, HTMLElement>>;
 }) {
-  const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { activeSection, setNavBarHeight } = useLandingPage();
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.51 },
-    );
-    sectionRefs.current.forEach((ref) => {
-      observer.observe(ref);
+    const ro = new ResizeObserver(([entry]) => {
+      setNavBarHeight(entry.contentRect.height);
     });
 
-    return () => observer.disconnect();
+    if (ref.current) {
+      ro.observe(ref.current);
+    }
+
+    return () => ro.disconnect();
   }, []);
 
   return (

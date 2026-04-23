@@ -1,21 +1,39 @@
 "use client";
 
 import * as motion from "motion/react-client";
-import { CSSProperties, ReactNode } from "react";
-
-//transition-all duration-1000 transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
+import { CSSProperties, ReactNode, useEffect, useRef } from "react";
+import { useLandingPage } from "./landing_page_context";
 
 export default function ScrollAnimation({
-  ref,
   id,
   style,
   children,
 }: {
-  ref?: React.Ref<HTMLElement>;
   id?: string;
   style?: CSSProperties;
   children?: ReactNode;
 }) {
+  const { setActiveSection } = useLandingPage();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.51 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <motion.section
       id={id}

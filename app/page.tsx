@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Binary,
   Blocks,
@@ -27,11 +25,12 @@ import {
   Zap,
 } from "lucide-react";
 
-import { JSX, useRef } from "react";
+import { JSX } from "react";
 
 import AboutSection from "./about";
 import ContactSection from "./contact";
 import HeroSection from "./hero";
+import { LandingPageProvider } from "./landing_page_context";
 import Navigation from "./navigation";
 import ProjectsSection from "./projects";
 import SkillsSection from "./skills";
@@ -49,11 +48,8 @@ function defineSections<T extends React.ElementType[]>(
   return sections;
 }
 
-export default function Home() {
-  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
-  const navBarRef = useRef<HTMLElement>(null);
-
-  const projects = [
+export default async function Home() {
+  /* const projects = [
     {
       title: "CloudCast Weather",
       description: "A real-time weather dashboard",
@@ -74,7 +70,7 @@ export default function Home() {
       github: "#",
       demo: "#",
     },
-  ];
+  ]; */
 
   const skills: {
     category: string;
@@ -129,7 +125,7 @@ export default function Home() {
   ];
 
   const sections = defineSections([
-    { id: "hero", label: "Home", component: HeroSection, props: { navBarRef } },
+    { id: "hero", label: "Home", component: HeroSection },
     {
       id: "skills",
       label: "Skills",
@@ -140,7 +136,6 @@ export default function Home() {
       id: "projects",
       label: "Projects",
       component: ProjectsSection,
-      props: { projects },
     },
     { id: "about", label: "About", component: AboutSection },
     { id: "contact", label: "Contact", component: ContactSection },
@@ -148,31 +143,23 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
-      <Navigation
-        ref={navBarRef}
-        sections={sections}
-        sectionRefs={sectionRefs}
-      ></Navigation>
-      <main className="max-w-5xl mx-auto px-6">
-        {sections.map((section) => {
-          const Component = section.component as React.ElementType;
-          return (
-            <Component
-              key={section.id}
-              id={section.id}
-              ref={(node: HTMLElement | null) => {
-                if (node) {
-                  sectionRefs.current.set(section.id, node);
-                } else {
-                  sectionRefs.current.delete(section.id);
-                }
-              }}
-              {...(section.props ?? {})}
-            ></Component>
-          );
-        })}
-      </main>
-
+      <LandingPageProvider>
+        <Navigation
+          sections={sections.map(({ id, label }) => ({ id, label }))}
+        ></Navigation>
+        <main className="max-w-5xl mx-auto px-6">
+          {sections.map((section) => {
+            const Component = section.component as React.ElementType;
+            return (
+              <Component
+                key={section.id}
+                id={section.id}
+                {...(section.props ?? {})}
+              ></Component>
+            );
+          })}
+        </main>
+      </LandingPageProvider>
       <footer className="py-6 text-center text-sm text-slate-500 border-t border-slate-800">
         <p>Built with React & Tailwind CSS. Designed for growth.</p>
       </footer>

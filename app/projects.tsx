@@ -1,27 +1,12 @@
-"use client";
 import { ExternalLink, Github } from "lucide-react";
 
+import { listProjects } from "./lib/api";
 import ScrollAnimation from "./scroll_animation";
 
-export default function ProjectsSection({
-  projects,
-  id,
-  ref,
-}: {
-  projects: {
-    title: string;
-    description: string;
-    goal: string;
-    stack: string[];
-    challenge: string;
-    github: string;
-    demo: string;
-  }[];
-  id: string;
-  ref: React.Ref<HTMLElement>;
-}) {
+export default async function ProjectsSection({ id }: { id: string }) {
+  const projects = await listProjects();
   return (
-    <ScrollAnimation id={id} ref={ref}>
+    <ScrollAnimation id={id}>
       <section className="py-20 border-t border-slate-800">
         <h2 className="text-3xl font-bold text-white mb-10 flex items-center">
           <span className="text-blue-400 mr-3">02.</span> What I've Been
@@ -33,7 +18,7 @@ export default function ProjectsSection({
         </p>
 
         <div className="space-y-12">
-          {projects.map((project, index) => (
+          {projects.map(({ metadata }, index) => (
             <div
               key={index}
               className="bg-slate-800/30 rounded-2xl border border-slate-700 overflow-hidden hover:border-slate-500 transition-colors duration-300"
@@ -42,22 +27,22 @@ export default function ProjectsSection({
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4 sm:gap-0">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">
-                      {project.title}
+                      {metadata.title}
                     </h3>
                     <p className="text-blue-400 font-medium">
-                      {project.description}
+                      {metadata.description}
                     </p>
                   </div>
                   <div className="flex space-x-3">
                     <a
-                      href={project.github}
+                      href={metadata.github}
                       className="text-slate-400 hover:text-white transition-colors"
                       title="GitHub Repo"
                     >
                       <Github className="w-6 h-6" />
                     </a>
                     <a
-                      href={project.demo}
+                      href={metadata.demo}
                       className="text-slate-400 hover:text-white transition-colors"
                       title="Live Demo"
                     >
@@ -72,7 +57,7 @@ export default function ProjectsSection({
                       The Goal
                     </h4>
                     <p className="text-slate-400 leading-relaxed text-sm">
-                      {project.goal}
+                      {metadata.goal}
                     </p>
                   </div>
                   <div>
@@ -80,13 +65,13 @@ export default function ProjectsSection({
                       The Challenge & Solution
                     </h4>
                     <p className="text-slate-400 leading-relaxed text-sm">
-                      {project.challenge}
+                      {metadata.challenge}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech, i) => (
+                  {metadata.stack.map((tech, i) => (
                     <span
                       key={i}
                       className="px-3 py-1 bg-slate-900 rounded-full text-xs font-medium text-emerald-400 border border-slate-700"
