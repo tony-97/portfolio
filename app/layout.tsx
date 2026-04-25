@@ -27,7 +27,14 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div className="min-h-screen flex flex-col bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
+          {children}
+          <footer className="py-6 text-center text-sm text-slate-500 border-t border-slate-800">
+            <p>Built with React & Tailwind CSS. Designed for growth.</p>
+          </footer>
+        </div>
+      </body>
     </html>
   );
 }
