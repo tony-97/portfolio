@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <LandingPageProvider>
       <Navigation
-        sections={sections.map(({ id, label }) => ({ id, label }))}
+        sections={sections.map(({ component, ...rest }) => rest)}
       ></Navigation>
       <main className="max-w-5xl mx-auto px-6">
         {sections.map((section) => {

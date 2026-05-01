@@ -16,7 +16,7 @@ export default async function Page({
   return (
     <LandingPageProvider>
       <Navigation
-        sections={sections.map(({ id, label }) => ({ id, label }))}
+        sections={sections.map(({ component, ...rest }) => rest)}
       ></Navigation>
       <main className="min-h-screen max-w-3xl mx-auto px-6 py-20 md:py-24">
         <article>

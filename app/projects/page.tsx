@@ -12,7 +12,7 @@ export default async function ProjectsPage() {
   return (
     <LandingPageProvider>
       <Navigation
-        sections={sections.map(({ id, label, path }) => ({ id, label, path }))}
+        sections={sections.map(({ component, ...rest }) => rest)}
       ></Navigation>
       <main className="min-h-screen max-w-5xl mx-auto px-6 py-20 md:py-24">
         <header className="mb-16">
