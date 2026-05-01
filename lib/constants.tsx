@@ -27,11 +27,11 @@ import {
 
 import { JSX } from "react";
 
-import AboutSection from "@/app/about";
-import ContactSection from "@/app/contact";
-import HeroSection from "@/app/hero";
-import ProjectsSection from "@/app/projects";
-import SkillsSection from "@/app/skills";
+import AboutSection from "@/components/about";
+import ContactSection from "@/components/contact";
+import HeroSection from "@/components/hero";
+import ProjectsSection from "@/components/projects";
+import SkillsSection from "@/components/skills";
 
 export type Section<T extends React.ElementType> = {
   id: string;

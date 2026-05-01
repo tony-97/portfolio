@@ -1,6 +1,6 @@
-import { LandingPageProvider } from "./landing_page_context";
-import { sections } from "./lib/constants";
-import Navigation from "./navigation";
+import { LandingPageProvider } from "@/context/landing_page_context";
+import { sections } from "@/lib/constants";
+import Navigation from "@/components/navigation";
 
 export default async function Home() {
   return (

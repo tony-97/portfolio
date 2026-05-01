@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { ProjectData } from "../interfaces/project";
+import { ProjectData } from "@/interfaces/project";
 
 export async function getProject(slug: string): Promise<ProjectData> {
   const post = await import(`@/content/projects/${slug}.mdx`);

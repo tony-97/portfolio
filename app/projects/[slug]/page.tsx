@@ -1,7 +1,7 @@
-import { LandingPageProvider } from "@/app/landing_page_context";
-import { getProject } from "@/app/lib/api";
-import { sections } from "@/app/lib/constants";
-import Navigation from "@/app/navigation";
+import { LandingPageProvider } from "@/context/landing_page_context";
+import { getProject } from "@/lib/api";
+import { sections } from "@/lib/constants";
+import Navigation from "@/components/navigation";
 
 export default async function Page({
   params,

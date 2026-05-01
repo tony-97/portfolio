@@ -1,7 +1,7 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
-import { listProjects } from "./lib/api";
+import { listProjects } from "@/lib/api";
 import ScrollAnimation from "./scroll_animation";
 
 export default async function ProjectsSection({ id }: { id: string }) {

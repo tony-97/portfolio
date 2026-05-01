@@ -3,7 +3,7 @@
 import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
 import { CSSProperties, ReactNode, useEffect, useRef } from "react";
-import { useLandingPage } from "./landing_page_context";
+import { useLandingPage } from "@/context/landing_page_context";
 
 export default function ScrollAnimation({
   id,

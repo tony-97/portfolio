@@ -5,9 +5,9 @@ import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useLandingPage } from "./landing_page_context";
+import { useLandingPage } from "@/context/landing_page_context";
 
-import { Section } from "./lib/constants";
+import { Section } from "@/lib/constants";
 
 export default function Navigation<T extends React.ElementType[]>({
   sections,

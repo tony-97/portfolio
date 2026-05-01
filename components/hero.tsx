@@ -2,7 +2,7 @@
 
 import { ChevronDown, Code2 } from "lucide-react";
 
-import { useLandingPage } from "./landing_page_context";
+import { useLandingPage } from "@/context/landing_page_context";
 import ScrollAnimation from "./scroll_animation";
 
 export default function HeroSection({ id }: { id: string }) {

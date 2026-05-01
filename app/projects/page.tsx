@@ -1,10 +1,10 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
-import { LandingPageProvider } from "@/app/landing_page_context";
-import { listProjects } from "@/app/lib/api";
-import { sections } from "@/app/lib/constants";
-import Navigation from "@/app/navigation";
+import { LandingPageProvider } from "@/context/landing_page_context";
+import { listProjects } from "@/lib/api";
+import { sections } from "@/lib/constants";
+import Navigation from "@/components/navigation";
 
 export default async function ProjectsPage() {
   const projects = await listProjects();
