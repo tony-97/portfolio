@@ -36,6 +36,7 @@ import SkillsSection from "@/app/skills";
 type Section<T extends React.ElementType> = {
   id: string;
   label: string;
+  path?: string;
   component: T;
   props?: Partial<React.ComponentProps<T>>;
 };
@@ -109,6 +110,7 @@ export const sections = defineSections([
   {
     id: "projects",
     label: "Projects",
+    path: "/projects",
     component: ProjectsSection,
   },
   { id: "about", label: "About", component: AboutSection },
