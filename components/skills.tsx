@@ -18,42 +18,39 @@ export default function SkillsSection({
 }) {
   return (
     <ScrollAnimation id={id}>
-      <div className="py-20 border-t border-slate-800">
-        <h2 className="text-3xl font-bold text-white mb-10 flex items-center">
-          <span className="text-blue-400 mr-3">01.</span> My Technical Toolkit
+      <div className="py-20">
+        <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
+          01
+        </p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+          Technical Toolkit
         </h2>
-        <p className="text-slate-400 mb-10 max-w-2xl leading-relaxed">
-          I've focused on building a strong foundation in modern web
-          development. Rather than trying to learn every language under the sun,
-          I've focused on deeply understanding a core stack.
+        <p className="text-muted-foreground mb-12 max-w-xl leading-relaxed">
+          I&apos;ve focused on building a strong foundation rather than chasing
+          every new framework. Here&apos;s what I work with.
         </p>
 
-        <div className="flex flex-col max-w-4xl space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="flex flex-col group border-b border-slate-800/60 pb-5 last:border-0 last:pb-0"
-            >
-              {/* Category Label (Now on top) */}
-              <div className="flex items-center space-x-4 mb-6 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="p-2.5 bg-slate-800/40 rounded-xl group-hover:bg-slate-800/80 border border-slate-800 group-hover:border-slate-700 transition-all">
+            <div key={index} className="space-y-4">
+              {/* Category Header */}
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-surface-raised rounded-lg border border-border text-muted-foreground">
                   {skill.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-wide">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                   {skill.category}
                 </h3>
               </div>
 
-              {/* Open Skill Pills with Icons */}
-              <ul className="flex flex-wrap gap-3">
+              {/* Skill Items */}
+              <ul className="flex flex-wrap gap-2">
                 {skill.items.map((item, i) => (
                   <li
                     key={i}
-                    className="group/pill flex items-center px-4 py-2 bg-slate-900/80 border border-slate-700/60 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:border-blue-500/60 hover:bg-slate-800 hover:shadow-[0_0_10px_rgba(59,130,246,0.15)] hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface rounded-full text-sm text-muted-foreground border border-border hover:border-border-subtle hover:text-foreground transition-colors cursor-default"
                   >
-                    <span className="mr-2.5 text-slate-400 group-hover/pill:text-blue-400 transition-colors duration-300">
-                      {item.icon}
-                    </span>
+                    <span className="text-muted">{item.icon}</span>
                     {item.name}
                   </li>
                 ))}

@@ -14,76 +14,74 @@ export default async function ProjectsPage() {
       <Navigation
         sections={sections.map(({ component, ...rest }) => rest)}
       ></Navigation>
-      <main className="min-h-screen max-w-5xl mx-auto px-6 py-20 md:py-24">
+      <main className="min-h-screen max-w-3xl mx-auto px-6 py-20 md:py-24">
         <header className="mb-16">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
             All Projects
           </h1>
-          <p className="text-xl text-slate-400">
-            A complete list of things I've built and worked on.
+          <p className="text-muted-foreground leading-relaxed">
+            A complete list of things I&apos;ve built and worked on.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map(({ slug, metadata }, index) => (
             <article
               key={index}
-              className="bg-slate-800/30 rounded-2xl border border-slate-700 flex flex-col overflow-hidden hover:border-slate-500 transition-colors duration-300 group"
+              className="group p-6 bg-surface rounded-xl border border-border flex flex-col hover:border-border-subtle transition-colors"
             >
-              <div className="p-8 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                    <Link href={`/projects/${slug}`}>{metadata.title}</Link>
-                  </h3>
-                  <div className="flex space-x-3 ml-4">
-                    {metadata.github && (
-                      <a
-                        href={metadata.github}
-                        className="text-slate-400 hover:text-white transition-colors"
-                        title="GitHub Repo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
-                    {metadata.demo && (
-                      <a
-                        href={metadata.demo}
-                        className="text-slate-400 hover:text-white transition-colors"
-                        title="Live Demo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <p className="text-slate-400 font-medium mb-6 flex-1">
-                  {metadata.description}
-                </p>
-
-                <ul className="flex flex-wrap gap-2 mb-6">
-                  {metadata.stack?.map((tech: string, i: number) => (
-                    <li
-                      key={i}
-                      className="px-3 py-1 bg-slate-900 rounded-full text-xs font-medium text-emerald-400 border border-slate-700"
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-lg font-semibold text-foreground group-hover:opacity-70 transition-opacity">
+                  <Link href={`/projects/${slug}`}>{metadata.title}</Link>
+                </h3>
+                <div className="flex gap-2.5 ml-3 shrink-0">
+                  {metadata.github && (
+                    <a
+                      href={metadata.github}
+                      className="text-muted hover:text-foreground transition-colors"
+                      title="GitHub Repo"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={`/projects/${slug}`}
-                  className="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors mt-auto"
-                >
-                  Read case study{" "}
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                      <Github className="w-4 h-4" />
+                    </a>
+                  )}
+                  {metadata.demo && (
+                    <a
+                      href={metadata.demo}
+                      className="text-muted hover:text-foreground transition-colors"
+                      title="Live Demo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
               </div>
+
+              <p className="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">
+                {metadata.description}
+              </p>
+
+              <ul className="flex flex-wrap gap-1.5 mb-5">
+                {metadata.stack?.map((tech: string, i: number) => (
+                  <li
+                    key={i}
+                    className="px-2.5 py-0.5 bg-surface-raised rounded-full text-xs font-medium text-muted-foreground border border-border"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href={`/projects/${slug}`}
+                className="inline-flex items-center text-sm font-medium text-foreground hover:opacity-70 transition-opacity mt-auto"
+              >
+                Read case study{" "}
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </article>
           ))}
         </div>

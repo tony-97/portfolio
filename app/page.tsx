@@ -8,7 +8,7 @@ export default async function Home() {
       <Navigation
         sections={sections.map(({ component, ...rest }) => rest)}
       ></Navigation>
-      <main className="max-w-5xl mx-auto px-6">
+      <main className="max-w-3xl mx-auto px-6">
         {sections.map((section) => {
           const Component = section.component as React.ElementType;
           return (

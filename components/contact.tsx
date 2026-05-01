@@ -4,36 +4,40 @@ import ScrollAnimation from "./scroll_animation";
 export default function ContactSection({ id }: { id: string }) {
   return (
     <ScrollAnimation id={id}>
-      <div className="py-20 border-t border-slate-800 text-center">
-        <h2 className="text-4xl font-bold text-white mb-6">Let's Connect!</h2>
-        <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg">
-          I am currently looking for my first full-time role as a Junior
-          Developer. If you're looking for someone who is eager to learn, ready
-          to tackle bugs, and excited to contribute to a great product, I would
-          love to chat.
+      <div className="py-20 text-center">
+        <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
+          04
+        </p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+          Let&apos;s Connect
+        </h2>
+        <p className="text-muted-foreground max-w-md mx-auto mb-8 leading-relaxed">
+          I&apos;m currently looking for my first full-time role. If you&apos;re
+          looking for someone eager to learn and ready to contribute, I&apos;d
+          love to hear from you.
         </p>
         <a
           href="mailto:hello@example.com"
-          className="inline-flex items-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors text-lg"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-foreground text-background text-sm font-medium rounded-lg hover:opacity-90"
         >
-          <Mail className="w-5 h-5 mr-2" />
-          Say Hello
+          <Mail className="w-4 h-4" />
+          Say hello
         </a>
 
-        <div className="flex justify-center space-x-6 mt-12">
+        <div className="flex justify-center gap-5 mt-10">
           <a
             href="#"
-            className="text-slate-500 hover:text-white transition-colors"
+            className="text-muted hover:text-foreground transition-colors"
+            aria-label="GitHub"
           >
-            <Github className="w-8 h-8" />
-            <span className="sr-only">GitHub</span>
+            <Github className="w-5 h-5" />
           </a>
           <a
             href="#"
-            className="text-slate-500 hover:text-blue-400 transition-colors"
+            className="text-muted hover:text-foreground transition-colors"
+            aria-label="LinkedIn"
           >
-            <Linkedin className="w-8 h-8" />
-            <span className="sr-only">LinkedIn</span>
+            <Linkedin className="w-5 h-5" />
           </a>
         </div>
       </div>
