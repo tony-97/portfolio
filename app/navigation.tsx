@@ -3,13 +3,16 @@
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useLandingPage } from "./landing_page_context";
 
-export default function Navigation({
+import { Section } from "./lib/constants";
+
+export default function Navigation<T extends React.ElementType[]>({
   sections,
 }: {
-  sections: { id: string; label: string }[];
+  sections: [...{ [K in keyof T]: Omit<Section<T[K]>, "component"> }];
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { activeSection, setNavBarHeight } = useLandingPage();
@@ -27,6 +30,23 @@ export default function Navigation({
     return () => ro.disconnect();
   }, []);
 
+  const pathname = usePathname();
+  console.log(pathname);
+  const sectionNavigation = (section: {
+    id: string;
+    label: string;
+    path?: string;
+  }) => {
+    const sectionPath = section.path || "/";
+    const isActive =
+      activeSection === section.id ||
+      (sectionPath !== "/" &&
+        pathname.startsWith(sectionPath) &&
+        !activeSection);
+    const href = sectionPath === "/" ? `/#${section.id}` : sectionPath;
+    return { isActive, href };
+  };
+
   return (
     <motion.nav
       ref={ref}
@@ -42,28 +62,31 @@ export default function Navigation({
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-sm font-medium">
-          {sections.map((section, index) => (
-            <li key={index} className="relative">
-              <a
-                href={`#${section.id}`}
-                className={`block py-2 hover:text-white ${activeSection === section.id ? "text-white" : ""} transition-colors`}
-              >
-                {section.label}
-              </a>
-              {activeSection === section.id && (
-                <motion.div
-                  layoutId="active-indicator"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 380,
-                    damping: 30,
-                  }}
-                  className="absolute bottom-1 left-0 right-0 h-0.5 rounded-full bg-white"
-                ></motion.div>
-              )}
-            </li>
-          ))}
+          {sections.map((section, index) => {
+            const { href, isActive } = sectionNavigation(section);
+            return (
+              <li key={index} className="relative">
+                <a
+                  href={href}
+                  className={`block py-2 hover:text-white ${isActive ? "text-white" : ""} transition-colors`}
+                >
+                  {section.label}
+                </a>
+                {isActive && (
+                  <motion.div
+                    layoutId="active-indicator"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                    className="absolute bottom-1 left-0 right-0 h-0.5 rounded-full bg-white"
+                  ></motion.div>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile Menu Toggle */}
@@ -90,17 +113,20 @@ export default function Navigation({
             className="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4"
           >
             <ul className="flex flex-col space-y-4 text-sm font-medium">
-              {sections.map((section, index) => (
-                <li key={index}>
-                  <a
-                    href={`#${section.id}`}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block hover:text-white ${activeSection === section.id ? "text-white" : "text-slate-400"} transition-colors`}
-                  >
-                    {section.label}
-                  </a>
-                </li>
-              ))}
+              {sections.map((section, index) => {
+                const { href, isActive } = sectionNavigation(section);
+                return (
+                  <li key={index}>
+                    <a
+                      href={href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block hover:text-white ${isActive ? "text-white" : "text-slate-400"} transition-colors`}
+                    >
+                      {section.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
         )}
