@@ -69,6 +69,7 @@ export default function Navigation<T extends React.ElementType[]>({
                 <a
                   href={href}
                   className={`block py-2 hover:text-white ${isActive ? "text-white" : ""} transition-colors`}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {section.label}
                 </a>
@@ -106,7 +107,8 @@ export default function Navigation<T extends React.ElementType[]>({
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.aside
+          <motion.nav
+            aria-label="Mobile Menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -121,6 +123,7 @@ export default function Navigation<T extends React.ElementType[]>({
                       href={href}
                       onClick={() => setIsMenuOpen(false)}
                       className={`block hover:text-white ${isActive ? "text-white" : "text-slate-400"} transition-colors`}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       {section.label}
                     </a>
@@ -128,7 +131,7 @@ export default function Navigation<T extends React.ElementType[]>({
                 );
               })}
             </ul>
-          </motion.aside>
+          </motion.nav>
         )}
       </AnimatePresence>
     </motion.header>

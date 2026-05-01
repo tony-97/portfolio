@@ -4,7 +4,7 @@ import ScrollAnimation from "./scroll_animation";
 export default function ContactSection({ id }: { id: string }) {
   return (
     <ScrollAnimation id={id}>
-      <section className="py-20 border-t border-slate-800 text-center">
+      <div className="py-20 border-t border-slate-800 text-center">
         <h2 className="text-4xl font-bold text-white mb-6">Let's Connect!</h2>
         <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg">
           I am currently looking for my first full-time role as a Junior
@@ -36,7 +36,7 @@ export default function ContactSection({ id }: { id: string }) {
             <span className="sr-only">LinkedIn</span>
           </a>
         </div>
-      </section>
+      </div>
     </ScrollAnimation>
   );
 }

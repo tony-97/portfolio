@@ -8,7 +8,7 @@ export default async function ProjectsSection({ id }: { id: string }) {
   const projects = await listProjects();
   return (
     <ScrollAnimation id={id}>
-      <section className="py-20 border-t border-slate-800">
+      <div className="py-20 border-t border-slate-800">
         <h2 className="text-3xl font-bold text-white mb-10 flex items-center">
           <span className="text-blue-400 mr-3">02.</span> What I've Been
           Building
@@ -20,7 +20,7 @@ export default async function ProjectsSection({ id }: { id: string }) {
 
         <div className="space-y-12">
           {projects.map(({ metadata }, index) => (
-            <div
+            <article
               key={index}
               className="bg-slate-800/30 rounded-2xl border border-slate-700 overflow-hidden hover:border-slate-500 transition-colors duration-300"
             >
@@ -71,18 +71,18 @@ export default async function ProjectsSection({ id }: { id: string }) {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2">
                   {metadata.stack.map((tech, i) => (
-                    <span
+                    <li
                       key={i}
                       className="px-3 py-1 bg-slate-900 rounded-full text-xs font-medium text-emerald-400 border border-slate-700"
                     >
                       {tech}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -95,7 +95,7 @@ export default async function ProjectsSection({ id }: { id: string }) {
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-      </section>
+      </div>
     </ScrollAnimation>
   );
 }

@@ -3,7 +3,7 @@ import ScrollAnimation from "./scroll_animation";
 export default function AboutSection({ id }: { id: string }) {
   return (
     <ScrollAnimation id={id}>
-      <section className="py-20 border-t border-slate-800">
+      <div className="py-20 border-t border-slate-800">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
             <span className="text-blue-400 mr-3">03.</span> Beyond the Code
@@ -27,7 +27,7 @@ export default function AboutSection({ id }: { id: string }) {
             </p>
           </div>
         </div>
-      </section>
+      </div>
     </ScrollAnimation>
   );
 }

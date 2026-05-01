@@ -30,16 +30,16 @@ export default async function Page({
               </p>
             )}
             {metadata.stack && metadata.stack.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-8">
+              <ul className="flex flex-wrap gap-2 mb-8">
                 {metadata.stack.map((tech) => (
-                  <span
+                  <li
                     key={tech}
                     className="inline-flex items-center rounded-full bg-slate-800 px-3 py-1 text-sm font-medium text-slate-300 ring-1 ring-inset ring-slate-700/50"
                   >
                     {tech}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
             <div className="flex gap-6">
               {metadata.github && (

@@ -24,9 +24,9 @@ export default async function ProjectsPage() {
           </p>
         </header>
 
-        <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, metadata }, index) => (
-            <section
+            <article
               key={index}
               className="bg-slate-800/30 rounded-2xl border border-slate-700 flex flex-col overflow-hidden hover:border-slate-500 transition-colors duration-300 group"
             >
@@ -65,16 +65,16 @@ export default async function ProjectsPage() {
                   {metadata.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <ul className="flex flex-wrap gap-2 mb-6">
                   {metadata.stack?.map((tech: string, i: number) => (
-                    <span
+                    <li
                       key={i}
                       className="px-3 py-1 bg-slate-900 rounded-full text-xs font-medium text-emerald-400 border border-slate-700"
                     >
                       {tech}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 <Link
                   href={`/projects/${slug}`}
@@ -84,9 +84,9 @@ export default async function ProjectsPage() {
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-            </section>
+            </article>
           ))}
-        </article>
+        </div>
       </main>
     </LandingPageProvider>
   );
