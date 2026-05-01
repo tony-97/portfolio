@@ -1,11 +1,11 @@
 "use client";
 
+import { useLandingPage } from "@/context/landing_page_context";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useLandingPage } from "@/context/landing_page_context";
 
 import { Section } from "@/lib/constants";
 
@@ -48,14 +48,14 @@ export default function Navigation<T extends React.ElementType[]>({
   };
 
   return (
-    <motion.nav
+    <motion.header
       ref={ref}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="sticky w-full top-0 z-50 bg-slate-900/80 backdrop-blur-sm backdrop-opacity-90 border-b border-slate-800"
     >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
           DevPortfolio
         </span>
@@ -101,12 +101,12 @@ export default function Navigation<T extends React.ElementType[]>({
             <Menu className="w-6 h-6" />
           )}
         </button>
-      </div>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
+          <motion.aside
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -128,9 +128,9 @@ export default function Navigation<T extends React.ElementType[]>({
                 );
               })}
             </ul>
-          </motion.div>
+          </motion.aside>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 }

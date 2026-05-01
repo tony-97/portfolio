@@ -1,10 +1,10 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
+import Navigation from "@/components/navigation";
 import { LandingPageProvider } from "@/context/landing_page_context";
 import { listProjects } from "@/lib/api";
 import { sections } from "@/lib/constants";
-import Navigation from "@/components/navigation";
 
 export default async function ProjectsPage() {
   const projects = await listProjects();
@@ -24,9 +24,9 @@ export default async function ProjectsPage() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, metadata }, index) => (
-            <div
+            <section
               key={index}
               className="bg-slate-800/30 rounded-2xl border border-slate-700 flex flex-col overflow-hidden hover:border-slate-500 transition-colors duration-300 group"
             >
@@ -84,9 +84,9 @@ export default async function ProjectsPage() {
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-            </div>
+            </section>
           ))}
-        </div>
+        </article>
       </main>
     </LandingPageProvider>
   );
