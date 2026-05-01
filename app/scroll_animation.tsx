@@ -1,5 +1,6 @@
 "use client";
 
+import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
 import { CSSProperties, ReactNode, useEffect, useRef } from "react";
 import { useLandingPage } from "./landing_page_context";
@@ -15,38 +16,21 @@ export default function ScrollAnimation({
 }) {
   const { setActiveSection } = useLandingPage();
   const ref = useRef<HTMLElement>(null);
-
+  const isInview = useInView(ref, {
+    amount: "some",
+    margin: "-30% 0px -30% 0px",
+  });
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.51 },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (isInview && ref.current) {
+      setActiveSection(ref.current.id);
     }
-
-    return () => observer.disconnect();
-  }, []);
+  }, [isInview]);
   return (
     <motion.section
       id={id}
       ref={ref}
       style={style}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        amount: 0.2,
-      }}
+      animate={isInview ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{
         duration: 0.8,
         ease: "easeOut",
