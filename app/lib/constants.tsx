@@ -33,7 +33,7 @@ import HeroSection from "@/app/hero";
 import ProjectsSection from "@/app/projects";
 import SkillsSection from "@/app/skills";
 
-type Section<T extends React.ElementType> = {
+export type Section<T extends React.ElementType> = {
   id: string;
   label: string;
   path?: string;
