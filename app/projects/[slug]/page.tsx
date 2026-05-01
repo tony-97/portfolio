@@ -9,7 +9,9 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { metadata, component: MDXComponent } = await getProject(slug);
+  const { metadata, component: MDXComponent } = await getProject(
+    decodeURIComponent(slug),
+  );
 
   return (
     <LandingPageProvider>
