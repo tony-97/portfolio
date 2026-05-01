@@ -1,4 +1,5 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 import { listProjects } from "./lib/api";
 import ScrollAnimation from "./scroll_animation";
@@ -83,6 +84,16 @@ export default async function ProjectsSection({ id }: { id: string }) {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center justify-center px-8 py-3 border border-slate-700 hover:border-blue-500 rounded-full text-white font-medium hover:bg-slate-800/50 transition-all duration-300 group"
+          >
+            See more projects
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
     </ScrollAnimation>
