@@ -1,18 +1,24 @@
 "use client";
 
+import { useLandingPage } from "@/context/landing_page_context";
 import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
 import { CSSProperties, ReactNode, useEffect, useRef } from "react";
-import { useLandingPage } from "@/context/landing_page_context";
 
 export default function ScrollAnimation({
   id,
   style,
   children,
+  className,
+  innerClassName,
 }: {
   id?: string;
   style?: CSSProperties;
   children?: ReactNode;
+  /** Applied to the full-bleed <section> wrapper (background, etc.) */
+  className?: string;
+  /** Applied to the inner content container (max-width, padding, etc.) */
+  innerClassName?: string;
 }) {
   const { setActiveSection } = useLandingPage();
   const ref = useRef<HTMLElement>(null);
@@ -30,6 +36,7 @@ export default function ScrollAnimation({
       id={id}
       ref={ref}
       style={style}
+      initial={{ opacity: 0, y: 40 }}
       animate={isInview ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{
         duration: 0.8,
@@ -37,7 +44,10 @@ export default function ScrollAnimation({
       }}
       className={`${isInview ? "" : "scroll-mt-10"} flex flex-col justify-center ${className ?? ""}`}
     >
-      {children}
+      {/* Inner container constrains content width */}
+      <div className={`max-w-3xl mx-auto px-6 w-full ${innerClassName ?? ""}`}>
+        {children}
+      </div>
     </motion.section>
   );
 }

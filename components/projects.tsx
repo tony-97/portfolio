@@ -7,7 +7,8 @@ import ScrollAnimation from "./scroll_animation";
 export default async function ProjectsSection({ id }: { id: string }) {
   const projects = await listProjects();
   return (
-    <ScrollAnimation id={id}>
+    /* Warm stone-50 / dark stone-900 — clearly different from the white skills section */
+    <ScrollAnimation id={id} className="bg-surface">
       <div className="py-20">
         <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
           02
@@ -24,7 +25,7 @@ export default async function ProjectsSection({ id }: { id: string }) {
           {projects.map(({ metadata }, index) => (
             <article
               key={index}
-              className="group p-6 sm:p-8 bg-surface rounded-xl border border-border hover:border-border-subtle transition-colors"
+              className="group p-6 sm:p-8 bg-background rounded-xl border border-border hover:border-border-subtle transition-colors shadow-xs dark:shadow-none"
             >
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
                 <div>
@@ -55,16 +56,14 @@ export default async function ProjectsSection({ id }: { id: string }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 text-sm">
                 <div>
-                  <h4 className="font-medium text-foreground mb-1">
-                    The Goal
-                  </h4>
+                  <h4 className="font-medium text-foreground mb-1">The Goal</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {metadata.goal}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-medium text-foreground mb-1">
-                    Challenge & Solution
+                    Challenge &amp; Solution
                   </h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {metadata.challenge}

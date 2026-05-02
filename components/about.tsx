@@ -2,7 +2,8 @@ import ScrollAnimation from "./scroll_animation";
 
 export default function AboutSection({ id }: { id: string }) {
   return (
-    <ScrollAnimation id={id}>
+    /* Back to white / dark stone-950 — clean alternation */
+    <ScrollAnimation id={id} className="bg-background">
       <div className="py-20">
         <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
           03

@@ -17,7 +17,8 @@ export default function SkillsSection({
   id: string;
 }) {
   return (
-    <ScrollAnimation id={id}>
+    /* White / dark stone-950 — clean contrast after the hero gradient */
+    <ScrollAnimation id={id} className="bg-background">
       <div className="py-20">
         <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
           01

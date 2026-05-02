@@ -12,8 +12,28 @@ export default function HeroSection({ id }: { id: string }) {
     <ScrollAnimation
       style={{ height: `calc(100svh - ${navBarHeight}px)` }}
       id={id}
+      className={[
+        /* Light: warm amber-tinted gradient from top-left */
+        "bg-gradient-to-br from-amber-50 via-stone-50 to-stone-100",
+        /* Dark: deep radial from near-black to dark stone */
+        "dark:from-stone-950 dark:via-stone-950 dark:to-stone-900",
+        "relative overflow-hidden",
+      ].join(" ")}
     >
-      <div className="max-w-2xl">
+      {/* Decorative blurred blob — light */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 -left-32 w-120 h-120 rounded-full
+          bg-amber-200/40 blur-3xl dark:bg-amber-900/20"
+      />
+      {/* Decorative blurred blob — right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-0 w-90 h-w-90 rounded-full
+          bg-stone-200/60 blur-3xl dark:bg-stone-800/30"
+      />
+
+      <div className="max-w-2xl relative z-10">
         <p className="text-sm font-mono text-muted-foreground mb-6 tracking-wide">
           Hello — I&apos;m
         </p>
@@ -21,8 +41,8 @@ export default function HeroSection({ id }: { id: string }) {
           Alex Developer.
         </h1>
         <h2 className="text-xl sm:text-2xl text-muted-foreground font-normal mb-8 leading-relaxed">
-          A junior engineer building my way into software — one
-          thoughtful project at a time.
+          A junior engineer building my way into software — one thoughtful
+          project at a time.
         </h2>
         <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
           I recently transitioned into tech. I don&apos;t have a decade of

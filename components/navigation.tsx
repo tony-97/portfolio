@@ -1,13 +1,14 @@
 "use client";
 
 import { useLandingPage } from "@/context/landing_page_context";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Section } from "@/lib/constants";
+import { useTheme } from "next-themes";
 
 export default function Navigation<T extends React.ElementType[]>({
   sections,
@@ -15,8 +16,15 @@ export default function Navigation<T extends React.ElementType[]>({
   sections: [...{ [K in keyof T]: Omit<Section<T[K]>, "component"> }];
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const { theme, setTheme } = useTheme();
   const { activeSection, setNavBarHeight } = useLandingPage();
   const ref = useRef<HTMLElement>(null);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
 
   useEffect(() => {
     const ro = new ResizeObserver(([entry]) => {
@@ -26,7 +34,7 @@ export default function Navigation<T extends React.ElementType[]>({
     if (ref.current) {
       ro.observe(ref.current);
     }
-
+    setIsClient(true);
     return () => ro.disconnect();
   }, []);
 
@@ -52,7 +60,7 @@ export default function Navigation<T extends React.ElementType[]>({
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="sticky w-full top-0 z-50 bg-surface-raised/60 backdrop-blur-md border-b border-border"
     >
       <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
         <a
@@ -88,7 +96,7 @@ export default function Navigation<T extends React.ElementType[]>({
                       stiffness: 380,
                       damping: 30,
                     }}
-                    className="absolute -bottom-[1px] left-0 right-0 h-[1.5px] bg-foreground rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full"
                   ></motion.div>
                 )}
               </li>
@@ -96,18 +104,35 @@ export default function Navigation<T extends React.ElementType[]>({
           })}
         </ul>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <X className="w-5 h-5" />
-          ) : (
-            <Menu className="w-5 h-5" />
+        <div className="flex items-center gap-3">
+          {/* Theme Toggle */}
+          {isClient && (
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark mode"
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-4 h-4" />
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
+            </button>
           )}
-        </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}

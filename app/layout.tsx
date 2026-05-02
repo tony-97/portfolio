@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,14 +29,15 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        <div className="min-h-screen flex flex-col">
+        <ThemeProvider attribute={"class"}>
           {children}
-          <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border mt-auto">
+          <footer className="py-8 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">
             <p>Designed & built with care.</p>
           </footer>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -3,7 +3,8 @@ import ScrollAnimation from "./scroll_animation";
 
 export default function ContactSection({ id }: { id: string }) {
   return (
-    <ScrollAnimation id={id}>
+    /* Warm stone-100 / dark stone-900 — closes the page with a distinct tint */
+    <ScrollAnimation id={id} className="bg-surface">
       <div className="py-20 text-center">
         <p className="text-sm font-mono text-muted-foreground mb-2 tracking-wide">
           04
