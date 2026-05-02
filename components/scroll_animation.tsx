@@ -35,7 +35,7 @@ export default function ScrollAnimation({
         duration: 0.8,
         ease: "easeOut",
       }}
-      className={`flex flex-col justify-center`}
+      className={`${isInview ? "" : "scroll-mt-10"} flex flex-col justify-center ${className ?? ""}`}
     >
       {children}
     </motion.section>
