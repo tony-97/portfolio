@@ -20,7 +20,7 @@ export default function ScrollAnimation({
   /** Applied to the inner content container (max-width, padding, etc.) */
   innerClassName?: string;
 }) {
-  const { setActiveSection } = useLandingPage();
+  const { setActiveSection, navBarHeight } = useLandingPage();
   const ref = useRef<HTMLElement>(null);
   const isInview = useInView(ref, {
     amount: "some",
@@ -35,7 +35,7 @@ export default function ScrollAnimation({
     <motion.section
       id={id}
       ref={ref}
-      style={style}
+      style={{ minHeight: `calc(100svh - ${navBarHeight}px)`, ...style }}
       initial={{ opacity: 0, y: 40 }}
       animate={isInview ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{
