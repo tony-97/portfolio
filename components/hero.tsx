@@ -1,16 +1,11 @@
-"use client";
-
 import { ArrowDown, ArrowRight } from "lucide-react";
 
-import { useLandingPage } from "@/context/landing_page_context";
+import Link from "next/link";
 import ScrollAnimation from "./scroll_animation";
 
 export default function HeroSection({ id }: { id: string }) {
-  const { navBarHeight } = useLandingPage();
-
   return (
     <ScrollAnimation
-      style={{ height: `calc(100svh - ${navBarHeight}px)` }}
       id={id}
       className={[
         /* Light: warm amber-tinted gradient from top-left */
@@ -50,20 +45,20 @@ export default function HeroSection({ id }: { id: string }) {
           technical foundation, and a portfolio built from the ground up.
         </p>
         <div className="flex flex-col sm:flex-row items-start gap-3">
-          <a
+          <Link
             href="#projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background text-sm font-medium rounded-lg hover:opacity-90"
           >
             View my work
             <ArrowDown className="w-3.5 h-3.5" />
-          </a>
-          <a
+          </Link>
+          <Link
             href="#contact"
             className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-foreground rounded-lg border border-border hover:bg-surface-raised"
           >
             Get in touch
             <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </ScrollAnimation>

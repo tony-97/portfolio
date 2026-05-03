@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Section } from "@/lib/constants";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export default function Navigation<T extends React.ElementType[]>({
   sections,
@@ -28,7 +29,7 @@ export default function Navigation<T extends React.ElementType[]>({
 
   useEffect(() => {
     const ro = new ResizeObserver(([entry]) => {
-      setNavBarHeight(entry.contentRect.height);
+      setNavBarHeight((entry.target as HTMLElement).offsetHeight);
     });
 
     if (ref.current) {
@@ -63,12 +64,12 @@ export default function Navigation<T extends React.ElementType[]>({
       className="sticky w-full top-0 z-50 bg-surface-raised/60 backdrop-blur-md border-b border-border"
     >
       <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
         >
           alex.dev
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 text-sm">
@@ -76,7 +77,7 @@ export default function Navigation<T extends React.ElementType[]>({
             const { href, isActive } = sectionNavigation(section);
             return (
               <li key={index} className="relative">
-                <a
+                <Link
                   href={href}
                   className={`py-1.5 transition-colors ${
                     isActive
@@ -86,7 +87,7 @@ export default function Navigation<T extends React.ElementType[]>({
                   aria-current={isActive ? "page" : undefined}
                 >
                   {section.label}
-                </a>
+                </Link>
                 {isActive && (
                   <motion.div
                     layoutId="active-indicator"
@@ -150,7 +151,7 @@ export default function Navigation<T extends React.ElementType[]>({
                 const { href, isActive } = sectionNavigation(section);
                 return (
                   <li key={index}>
-                    <a
+                    <Link
                       href={href}
                       onClick={() => setIsMenuOpen(false)}
                       className={`block py-1 transition-colors ${
@@ -161,7 +162,7 @@ export default function Navigation<T extends React.ElementType[]>({
                       aria-current={isActive ? "page" : undefined}
                     >
                       {section.label}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

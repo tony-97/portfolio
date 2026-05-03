@@ -35,14 +35,18 @@ export default function ScrollAnimation({
     <motion.section
       id={id}
       ref={ref}
-      style={{ minHeight: `calc(100svh - ${navBarHeight}px)`, ...style }}
       initial={{ opacity: 0, y: 40 }}
       animate={isInview ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{
         duration: 0.8,
         ease: "easeOut",
       }}
-      className={`${isInview ? "" : "scroll-mt-10"} flex flex-col justify-center ${className ?? ""}`}
+      style={{
+        minHeight: `calc(100svh - ${navBarHeight}px)`,
+        scrollMarginTop: `${(isInview ? 0 : 40) + navBarHeight}px`,
+        ...style,
+      }}
+      className={`flex flex-col justify-center ${className ?? ""}`}
     >
       {/* Inner container constrains content width */}
       <div className={`max-w-3xl mx-auto px-6 w-full ${innerClassName ?? ""}`}>
