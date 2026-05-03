@@ -1,7 +1,11 @@
+import Navigation from "@/components/navigation";
+import { LandingPageProvider } from "@/context/landing_page_context";
+import { sections } from "@/lib/constants";
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +37,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <ThemeProvider attribute={"class"}>
-          {children}
+          <LandingPageProvider>
+            <Navigation
+              sections={sections.map(({ component, ...rest }) => rest)}
+            ></Navigation>
+            {children}
+          </LandingPageProvider>
           <footer className="py-8 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">
             <p>Designed & built with care.</p>
           </footer>
