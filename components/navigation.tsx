@@ -50,7 +50,7 @@ export default function Navigation<T extends React.ElementType[]>({
     if (sectionPath !== "/" && pathname !== "/") {
       isActive = pathname.startsWith(sectionPath);
     } else {
-      isActive = activeSection === section.id;
+      isActive = pathname === "/" && activeSection === section.id;
     }
     const href = sectionPath === "/" ? `/#${section.id}` : sectionPath;
     return { isActive, href };
