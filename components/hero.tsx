@@ -19,13 +19,13 @@ export default function HeroSection({ id }: { id: string }) {
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -left-32 w-120 h-120 rounded-full
-          bg-amber-200/40 blur-3xl dark:bg-amber-900/20"
+          bg-amber-200/30 blur-3xl dark:bg-amber-900/20"
       />
       {/* Decorative blurred blob — right */}
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 w-90 h-w-90 rounded-full
-          bg-stone-200/60 blur-3xl dark:bg-stone-800/30"
+        className="pointer-events-none absolute bottom-0 right-0 w-90 h-90 rounded-full
+          bg-stone-200/60 blur-3xl dark:bg-stone-800/20"
       />
 
       <div className="max-w-2xl relative z-10">
