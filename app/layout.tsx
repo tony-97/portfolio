@@ -43,7 +43,7 @@ export default function RootLayout({
             ></Navigation>
             {children}
           </LandingPageProvider>
-          <footer className="py-8 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">
+          <footer className="py-6 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">
             <p>Designed & built with care.</p>
           </footer>
         </ThemeProvider>
