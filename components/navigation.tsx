@@ -77,7 +77,7 @@ export default function Navigation<T extends React.ElementType[]>({
           {sections.map((section, index) => {
             const { href, isActive } = sectionNavigation(section);
             return (
-              <li key={index} className="relative">
+              <li key={section.id} className="relative">
                 <Link
                   href={href}
                   className={`py-1.5 transition-colors ${
