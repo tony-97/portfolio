@@ -29,7 +29,7 @@ export default function Navigation<T extends React.ElementType[]>({
 
   useEffect(() => {
     const ro = new ResizeObserver(([entry]) => {
-      setNavBarHeight((entry.target as HTMLElement).offsetHeight);
+      setNavBarHeight(entry.borderBoxSize[0].blockSize);
     });
 
     if (ref.current) {
@@ -98,6 +98,7 @@ export default function Navigation<T extends React.ElementType[]>({
                       stiffness: 380,
                       damping: 30,
                     }}
+                    style={{ originY: "0px" }}
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full"
                   ></motion.div>
                 )}
