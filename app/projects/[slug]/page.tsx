@@ -42,7 +42,7 @@ export default async function Page({
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
               >
-                View on GitHub <span aria-hidden="true">&rarr;</span>
+                Ver en GitHub <span aria-hidden="true">&rarr;</span>
               </a>
             )}
             {metadata.demo && (
@@ -52,7 +52,7 @@ export default async function Page({
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
               >
-                Live Demo <span aria-hidden="true">&rarr;</span>
+                Demo en vivo <span aria-hidden="true">&rarr;</span>
               </a>
             )}
           </div>

@@ -69,7 +69,7 @@ export default function Navigation<T extends React.ElementType[]>({
           href="/"
           className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
         >
-          alex.dev
+          tony.dev
         </Link>
 
         {/* Desktop Menu */}
@@ -112,7 +112,7 @@ export default function Navigation<T extends React.ElementType[]>({
           {isClient && (
             <button
               onClick={toggleTheme}
-              aria-label="Toggle dark mode"
+              aria-label="Cambiar modo oscuro"
               className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
             >
               {theme === "dark" ? (
@@ -127,7 +127,7 @@ export default function Navigation<T extends React.ElementType[]>({
           <button
             className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label="Abrir menú"
           >
             {isMenuOpen ? (
               <X className="w-5 h-5" />
@@ -142,7 +142,7 @@ export default function Navigation<T extends React.ElementType[]>({
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            aria-label="Mobile Menu"
+            aria-label="Menú móvil"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

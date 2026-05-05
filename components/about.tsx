@@ -8,23 +8,24 @@ export default function AboutSection({ id }: { id: string }) {
           03
         </p>
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-8">
-          Beyond the Code
+          Más Allá del Código
         </h2>
         <div className="max-w-xl space-y-5 text-muted-foreground leading-relaxed">
           <p>
-            Software development is mostly about communication, resilience, and
-            the willingness to learn — the syntax is the easy part.
+            El desarrollo de software se trata principalmente de comunicación,
+            resiliencia y la disposición para aprender — la sintaxis es la
+            parte fácil.
           </p>
           <p>
-            Being self-taught means I&apos;m comfortable not knowing the answer
-            right away. I know how to read documentation, ask the right
-            questions, and break intimidating problems into small, solvable
-            steps.
+            Ser autodidacta significa que me siento cómodo sin saber la
+            respuesta de inmediato. Sé cómo leer documentación, hacer las
+            preguntas correctas y dividir problemas intimidantes en pasos
+            pequeños y resolubles.
           </p>
           <p>
-            I&apos;m looking for a team where I can bring enthusiasm, contribute
-            meaningfully, and learn from engineers who&apos;ve been doing this
-            longer than I have.
+            Busco un equipo donde pueda aportar entusiasmo, contribuir de
+            manera significativa y aprender de ingenieros que llevan más
+            tiempo en esto que yo.
           </p>
         </div>
       </div>

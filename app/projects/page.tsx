@@ -10,10 +10,10 @@ export default async function ProjectsPage() {
     <main className="min-h-screen max-w-3xl mx-auto px-6 py-20 md:py-24">
       <header className="mb-16">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
-          All Projects
+          Todos los Proyectos
         </h1>
         <p className="text-muted-foreground leading-relaxed">
-          A complete list of things I&apos;ve built and worked on.
+          Una lista completa de lo que he construido y en lo que he trabajado.
         </p>
       </header>
 
@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
                   <a
                     href={metadata.github}
                     className="text-muted hover:text-foreground transition-colors"
-                    title="GitHub Repo"
+                    title="Repositorio en GitHub"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -43,7 +43,7 @@ export default async function ProjectsPage() {
                   <a
                     href={metadata.demo}
                     className="text-muted hover:text-foreground transition-colors"
-                    title="Live Demo"
+                    title="Demo en vivo"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -72,7 +72,7 @@ export default async function ProjectsPage() {
               href={`/projects/${slug}`}
               className="inline-flex items-center text-sm font-medium text-foreground hover:opacity-70 transition-opacity mt-auto"
             >
-              Read case study{" "}
+              Leer caso de estudio{" "}
               <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </article>

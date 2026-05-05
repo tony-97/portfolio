@@ -9,19 +9,19 @@ export default function ContactSection({ id }: { id: string }) {
           04
         </p>
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-          Let&apos;s Connect
+          Conectemos
         </h2>
         <p className="text-muted-foreground max-w-md mx-auto mb-8 leading-relaxed">
-          I&apos;m currently looking for my first full-time role. If you&apos;re
-          looking for someone eager to learn and ready to contribute, I&apos;d
-          love to hear from you.
+          Actualmente estoy buscando mi primer empleo a tiempo completo. Si
+          buscas a alguien con ganas de aprender y listo para contribuir, me
+          encantaría saber de ti.
         </p>
         <a
           href="mailto:hello@example.com"
           className="inline-flex items-center gap-2 px-6 py-2.5 bg-foreground text-background text-sm font-medium rounded-lg hover:opacity-90"
         >
           <Mail className="w-4 h-4" />
-          Say hello
+          Escríbeme
         </a>
 
         <div className="flex justify-center gap-5 mt-10">

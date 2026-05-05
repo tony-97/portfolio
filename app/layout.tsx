@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Developer — Junior Software Engineer",
+  title: "Tony Angello Acuña Flores — Ingeniero de Software Junior",
   description:
-    "Portfolio of Alex Developer, a junior software engineer passionate about building clean, thoughtful web applications.",
+    "Portafolio de Tony Angello Acuña Flores, un ingeniero de software junior apasionado por construir aplicaciones web limpias y bien pensadas.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       data-scroll-behavior="smooth"
-      lang="en"
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
       suppressHydrationWarning
     >
@@ -44,7 +44,7 @@ export default function RootLayout({
             {children}
           </LandingPageProvider>
           <footer className="py-6 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">
-            <p>Designed & built with care.</p>
+            <p>Diseñado y construido con dedicación.</p>
           </footer>
         </ThemeProvider>
       </body>

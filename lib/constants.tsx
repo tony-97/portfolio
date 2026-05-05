@@ -76,7 +76,7 @@ export const skills: {
     ],
   },
   {
-    category: "Systems & Data",
+    category: "Sistemas y Datos",
     icon: <Database className="w-5 h-5" />,
     items: [
       { name: "C++", icon: <Cpu className="w-3.5 h-3.5" /> },
@@ -87,7 +87,7 @@ export const skills: {
     ],
   },
   {
-    category: "Tools",
+    category: "Herramientas",
     icon: <Terminal className="w-5 h-5" />,
     items: [
       { name: "Git", icon: <GitBranch className="w-3.5 h-3.5" /> },
@@ -100,19 +100,19 @@ export const skills: {
 ];
 
 export const sections = defineSections([
-  { id: "hero", label: "Home", component: HeroSection },
+  { id: "hero", label: "Inicio", component: HeroSection },
   {
     id: "skills",
-    label: "Skills",
+    label: "Habilidades",
     component: SkillsSection,
     props: { skills },
   },
   {
     id: "projects",
-    label: "Projects",
+    label: "Proyectos",
     path: "/projects",
     component: ProjectsSection,
   },
-  { id: "about", label: "About", component: AboutSection },
-  { id: "contact", label: "Contact", component: ContactSection },
+  { id: "about", label: "Sobre Mí", component: AboutSection },
+  { id: "contact", label: "Contacto", component: ContactSection },
 ]);

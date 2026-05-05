@@ -14,11 +14,11 @@ export default async function ProjectsSection({ id }: { id: string }) {
           02
         </p>
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
-          What I&apos;ve Built
+          Lo Que He Construido
         </h2>
         <p className="text-muted-foreground mb-12 max-w-xl leading-relaxed">
-          The best way to learn is by doing. Here are projects I&apos;ve built
-          from scratch to sharpen my skills.
+          La mejor forma de aprender es haciendo. Estos son proyectos que
+          construí desde cero para fortalecer mis habilidades.
         </p>
 
         <div className="space-y-6">
@@ -40,14 +40,14 @@ export default async function ProjectsSection({ id }: { id: string }) {
                   <a
                     href={metadata.github}
                     className="text-muted hover:text-foreground transition-colors"
-                    title="GitHub Repo"
+                    title="Repositorio en GitHub"
                   >
                     <Github className="w-4.5 h-4.5" />
                   </a>
                   <a
                     href={metadata.demo}
                     className="text-muted hover:text-foreground transition-colors"
-                    title="Live Demo"
+                    title="Demo en vivo"
                   >
                     <ExternalLink className="w-4.5 h-4.5" />
                   </a>
@@ -56,14 +56,14 @@ export default async function ProjectsSection({ id }: { id: string }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 text-sm">
                 <div>
-                  <h4 className="font-medium text-foreground mb-1">The Goal</h4>
+                  <h4 className="font-medium text-foreground mb-1">El Objetivo</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {metadata.goal}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-medium text-foreground mb-1">
-                    Challenge &amp; Solution
+                    Desafío y Solución
                   </h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {metadata.challenge}
@@ -90,7 +90,7 @@ export default async function ProjectsSection({ id }: { id: string }) {
             href="/projects"
             className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-foreground rounded-full border border-border hover:bg-surface-raised transition-colors group"
           >
-            See all projects
+            Ver todos los proyectos
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>

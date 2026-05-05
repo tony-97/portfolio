@@ -24,11 +24,11 @@ export default function SkillsSection({
           01
         </p>
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
-          Technical Toolkit
+          Herramientas Técnicas
         </h2>
         <p className="text-muted-foreground mb-12 max-w-xl leading-relaxed">
-          I&apos;ve focused on building a strong foundation rather than chasing
-          every new framework. Here&apos;s what I work with.
+          Me he enfocado en construir una base sólida en lugar de perseguir
+          cada nuevo framework. Esto es con lo que trabajo.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
