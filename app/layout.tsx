@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tony Angello Acuña Flores — Ingeniero de Software Junior",
+  title: "Tony Angello Acuña Flores — Desarrollador de Software",
   description:
-    "Portafolio de Tony Angello Acuña Flores, un ingeniero de software junior apasionado por construir aplicaciones web limpias y bien pensadas.",
+    "Portafolio de Tony Angello Acuña Flores, desarrollador de software apasionado por construir aplicaciones web limpias y bien pensadas.",
 };
 
 export default function RootLayout({

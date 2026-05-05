@@ -69,7 +69,7 @@ export default function Navigation<T extends React.ElementType[]>({
           href="/"
           className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
         >
-          tony.dev
+          tony &#123; &#125;
         </Link>
 
         {/* Desktop Menu */}

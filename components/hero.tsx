@@ -31,21 +31,15 @@ export default function HeroSection({ id }: { id: string }) {
 
       <div className="max-w-2xl relative z-10">
         <p className="text-sm font-mono text-muted-foreground mb-6 tracking-wide">
-          Hola — Soy
+          &gt; Hola — Soy
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight leading-[1.1]">
-          Tony Angello Acuña Flores.
+          Tony Acuña.
         </h1>
         <h2 className="text-xl sm:text-2xl text-muted-foreground font-normal mb-8 leading-relaxed">
-          Un ingeniero junior construyendo mi camino en el software — un
-          proyecto bien pensado a la vez.
+          Un desarrollador de software construyendo mi camino en el software —
+          un proyecto bien pensado a la vez.
         </h2>
-        <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
-          Recientemente hice la transición al mundo tech. Aún no tengo una
-          década de experiencia corporativa (¡pero ya llegará!), lo que sí
-          traigo es una curiosidad profunda, una base técnica sólida y un
-          portafolio construido desde cero.
-        </p>
         <div className="flex flex-col sm:flex-row items-start gap-3">
           <Link
             href="#projects"
