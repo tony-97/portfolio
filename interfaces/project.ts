@@ -1,13 +1,13 @@
-import { Metadata } from "next/types";
-
-export type ProjectMetadata = Metadata & {
+export type ProjectMetadata = {
   title: string;
   description: string;
   goal: string;
   stack: string[];
   challenge: string;
-  github: string;
-  demo: string;
+  github?: string;
+  demo?: string;
+  publishedAt: Date;
+  lastModified: Date;
 };
 
 export type ProjectData = {

@@ -1,4 +1,43 @@
 import { getProject } from "@/lib/api";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { slug } = await params;
+  const { metadata } = await getProject(decodeURIComponent(slug));
+  const url = `/projects/${slug}`;
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      locale: "es",
+      type: "article",
+      url: url,
+      title: metadata.title,
+      description: metadata.description,
+      authors: ["Tony Angello Acuña Flores"],
+      publishedTime: metadata.publishedAt.toDateString(),
+      modifiedTime: metadata.lastModified.toDateString(),
+      tags: metadata.stack,
+      section: "Casos de Estudio",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+    },
+  };
+}
 
 export default async function Page({
   params,

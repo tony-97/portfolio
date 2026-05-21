@@ -2,6 +2,31 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 import { listProjects } from "@/lib/api";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Proyectos",
+  description:
+    "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
+  openGraph: {
+    type: "website",
+    url: "/projects",
+    title: "Tony Angello Acuña Flores — Proyectos",
+    siteName: "Portafolio de Tony Angello Acuña Flores",
+    locale: "es",
+    description:
+      "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tony Angello Acuña Flores — Proyectos",
+    description:
+      "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
+  },
+  alternates: {
+    canonical: "/projects",
+  },
+};
 
 export default async function ProjectsPage() {
   const projects = await listProjects();
