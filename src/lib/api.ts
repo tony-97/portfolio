@@ -15,7 +15,9 @@ export async function getProject(slug: string): Promise<ProjectData> {
 export async function listProjects(): Promise<
   Omit<ProjectData, "component">[]
 > {
-  const files = await fs.readdir(path.join(process.cwd(), "content/projects"));
+  const files = await fs.readdir(
+    path.join(process.cwd(), "src/content/projects"),
+  );
 
   return Promise.all(
     files.map(async (file) => {

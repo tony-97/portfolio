@@ -2,6 +2,7 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 import { listProjects } from "@/lib/api";
+import { baseURL } from "@/resources/config";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,8 +32,25 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   const projects = await listProjects();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Proyectos de Tony Angello Acuña Flores",
+    description:
+      "Explora mis proyectos más recientes de desarrollo de software.",
+    url: `${baseURL}/projects`,
+    creator: {
+      "@id": `${baseURL}/#person`,
+    },
+  };
   return (
     <main className="min-h-screen max-w-3xl mx-auto px-6 py-20 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="mb-16">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
           Todos los Proyectos

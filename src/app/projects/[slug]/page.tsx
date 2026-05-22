@@ -1,4 +1,5 @@
 import { getProject } from "@/lib/api";
+import { baseURL } from "@/resources/config";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -49,8 +50,29 @@ export default async function Page({
     decodeURIComponent(slug),
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: metadata.title,
+    description: metadata.description,
+    image: `${baseURL}/projects/${slug}/opengraph-image`,
+    author: {
+      "@id": `${baseURL}/#person`,
+    },
+    datePublished: metadata.publishedAt,
+    dateModified: metadata.lastModified,
+    publisher: {
+      "@id": `${baseURL}/#person`,
+    },
+  };
   return (
     <main className="min-h-screen max-w-2xl mx-auto px-6 py-20 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <article>
         <header className="mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
