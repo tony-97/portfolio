@@ -4,8 +4,8 @@ import IconComponent from "@/components/icon";
 
 // Image metadata
 export const size = {
-  width: 32,
-  height: 32,
+  width: 180,
+  height: 180,
 };
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ export const contentType = "image/png";
 export default function Icon() {
   return new ImageResponse(
     // ImageResponse JSX element
-    <IconComponent fontSize={18}></IconComponent>,
+    <IconComponent fontSize={108}></IconComponent>,
     // ImageResponse options
     {
       // For convenience, we can re-use the exported icons size metadata
