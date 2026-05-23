@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import { person } from "../resources/content";
 import ScrollAnimation from "./scroll_animation";
 
 export default function ContactSection({ id }: { id: string }) {
@@ -17,7 +18,7 @@ export default function ContactSection({ id }: { id: string }) {
           encantaría saber de ti.
         </p>
         <a
-          href="mailto:hello@example.com"
+          href={`mailto:${person.email}`}
           className="inline-flex items-center gap-2 px-6 py-2.5 bg-foreground text-background text-sm font-medium rounded-lg hover:opacity-90"
         >
           <Mail className="w-4 h-4" />
@@ -26,14 +27,14 @@ export default function ContactSection({ id }: { id: string }) {
 
         <div className="flex justify-center gap-5 mt-10">
           <a
-            href="#"
+            href={`${person.socials.github}`}
             className="text-muted hover:text-foreground transition-colors"
             aria-label="GitHub"
           >
             <Github className="w-5 h-5" />
           </a>
           <a
-            href="#"
+            href={`${person.socials.linkedin}`}
             className="text-muted hover:text-foreground transition-colors"
             aria-label="LinkedIn"
           >
