@@ -37,26 +37,33 @@ export default async function ProjectsSection({ id }: { id: string }) {
                   </p>
                 </div>
                 <div className="flex gap-3 shrink-0">
-                  <a
-                    href={metadata.github}
-                    className="text-muted hover:text-foreground transition-colors"
-                    title="Repositorio en GitHub"
-                  >
-                    <Github className="w-4.5 h-4.5" />
-                  </a>
-                  <a
-                    href={metadata.demo}
-                    className="text-muted hover:text-foreground transition-colors"
-                    title="Demo en vivo"
-                  >
-                    <ExternalLink className="w-4.5 h-4.5" />
-                  </a>
+                  {metadata.github && (
+                    <a
+                      href={metadata.github}
+                      className="text-muted hover:text-foreground transition-colors"
+                      title="Repositorio en GitHub"
+                    >
+                      <Github className="w-4.5 h-4.5" />
+                    </a>
+                  )}
+
+                  {metadata.demo && (
+                    <a
+                      href={metadata.demo}
+                      className="text-muted hover:text-foreground transition-colors"
+                      title="Demo en vivo"
+                    >
+                      <ExternalLink className="w-4.5 h-4.5" />
+                    </a>
+                  )}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 text-sm">
                 <div>
-                  <h4 className="font-medium text-foreground mb-1">El Objetivo</h4>
+                  <h4 className="font-medium text-foreground mb-1">
+                    El Objetivo
+                  </h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {metadata.goal}
                   </p>
