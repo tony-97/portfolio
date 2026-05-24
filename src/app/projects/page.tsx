@@ -1,33 +1,19 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
+import JSONLd from "@/components/jsonld";
 import { listProjects } from "@/lib/api";
 import { baseURL } from "@/resources/config";
+import buildPageMetadata from "@/src/lib/seo";
+import { projects as projects_content } from "@/src/resources/content";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Proyectos",
-  description:
-    "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
-  openGraph: {
-    type: "website",
-    url: "/projects",
-    title: "Tony Angello Acuña Flores — Proyectos",
-    siteName: "Portafolio de Tony Angello Acuña Flores",
-    locale: "es",
-    description:
-      "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tony Angello Acuña Flores — Proyectos",
-    description:
-      "Explora mis proyectos más recientes de desarrollo de software. Casos de estudio sobre aplicaciones web limpias, escalables y bien pensadas.",
-  },
-  alternates: {
-    canonical: "/projects",
-  },
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: projects_content.title,
+  fullTitle: projects_content.fullTitle,
+  description: projects_content.description,
+  path: projects_content.path,
+});
 
 export default async function ProjectsPage() {
   const projects = await listProjects();
@@ -35,9 +21,8 @@ export default async function ProjectsPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Proyectos de Tony Angello Acuña Flores",
-    description:
-      "Explora mis proyectos más recientes de desarrollo de software.",
+    name: projects_content.fullTitle,
+    description: projects_content.description,
     url: `${baseURL}/projects`,
     creator: {
       "@id": `${baseURL}/#person`,
@@ -45,12 +30,7 @@ export default async function ProjectsPage() {
   };
   return (
     <main className="min-h-screen max-w-3xl mx-auto px-6 py-20 md:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JSONLd json={jsonLd}></JSONLd>
       <header className="mb-16">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
           Todos los Proyectos

@@ -1,5 +1,20 @@
+import JSONLd from "@/components/jsonld";
 import { sections } from "@/lib/constants";
+import buildPageMetadata from "@/lib/seo";
 import { baseURL } from "@/resources/config";
+import { home, person, siteName } from "@/resources/content";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: baseURL,
+  fullTitle: home.fullTitle,
+  description: home.description,
+  openGraph: {
+    type: "profile",
+    firstName: person.firstName,
+    lastName: person.lastName,
+  },
+});
 
 export default async function Home() {
   const jsonLd = {
@@ -9,31 +24,22 @@ export default async function Home() {
         "@type": "WebSite",
         "@id": `${baseURL}/#website`,
         url: `${baseURL}`,
-        name: "Portafolio de Tony Angello Acuña Flores",
-        description:
-          "Desarrollador de software apasionado por construir aplicaciones web.",
+        name: siteName,
+        description: person.description,
       },
       {
         "@type": "Person",
         "@id": `${baseURL}/#person`,
-        name: "Tony Angello Acuña Flores",
+        name: person.name,
         url: `${baseURL}`,
-        jobTitle: "Desarrollador de Software",
-        sameAs: [
-          "https://github.com/tony-97",
-          "https://www.linkedin.com/in/tony-acuña-flores-021462400",
-        ],
+        jobTitle: person.role,
+        sameAs: Object.values(person.socials),
       },
     ],
   };
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JSONLd json={jsonLd}></JSONLd>
       {sections.map((section) => {
         const Component = section.component as React.ElementType;
         return (

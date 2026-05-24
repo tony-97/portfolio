@@ -4,6 +4,7 @@ import { sections } from "@/lib/constants";
 import "./globals.css";
 
 import { baseURL } from "@/resources/config";
+import { person } from "@/resources/content";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -21,14 +22,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(baseURL),
   title: {
-    default: "Tony Angello Acuña Flores — Desarrollador de Software",
-    template: "%s | Tony Angello Acuña Flores",
+    default: `${person.name} — ${person.role}`,
+    template: `%s | ${person.name}`,
   },
-  description:
-    "Portafolio de Tony Angello Acuña Flores, desarrollador de software apasionado por construir aplicaciones web limpias y bien pensadas.",
-  authors: [{ name: "Tony Angello Acuña Flores", url: baseURL }],
-  creator: "Tony Angello Acuña Flores",
-  publisher: "Tony Angello Acuña Flores",
+  authors: [{ name: person.name, url: baseURL }],
+  creator: person.name,
+  publisher: person.name,
   category: "technology",
   robots: {
     follow: true,
@@ -40,26 +39,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  openGraph: {
-    type: "profile",
-    locale: "es",
-    url: baseURL,
-    title: "Tony Angello Acuña Flores — Desarrollador de Software",
-    siteName: "Portafolio de Tony Angello Acuña Flores",
-    description:
-      "Portafolio de Tony Angello Acuña Flores, desarrollador de software apasionado por construir aplicaciones web limpias y bien pensadas.",
-    firstName: "Tony Angello",
-    lastName: "Acuña Flores",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tony Angello Acuña Flores — Desarrollador de Software",
-    description:
-      "Portafolio de Tony Angello Acuña Flores, desarrollador de software apasionado por construir aplicaciones web limpias y bien pensadas.",
-  },
-  alternates: {
-    canonical: baseURL,
   },
 };
 

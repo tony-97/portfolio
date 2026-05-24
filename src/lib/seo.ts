@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { siteName } from "../resources/content";
 
-type MetadataProps = Metadata & { path: string };
+type MetadataProps = Metadata & { path: string; fullTitle?: string };
 
 export default function buildPageMetadata({
   title,
+  fullTitle,
   description,
   openGraph,
   twitter,
@@ -16,7 +17,7 @@ export default function buildPageMetadata({
     openGraph: {
       type: "website",
       url: path,
-      title: title ?? undefined,
+      title: fullTitle,
       siteName,
       locale: "es",
       description: description ?? undefined,
@@ -27,8 +28,11 @@ export default function buildPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: title ?? undefined,
+      title: fullTitle,
       description,
+      images: openGraph?.images ?? [
+        { url: "/api/og", width: 1200, height: 630 },
+      ],
       ...twitter,
     },
     alternates: {

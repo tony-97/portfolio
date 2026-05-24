@@ -1,5 +1,7 @@
+import JSONLd from "@/components/jsonld";
 import { getProject } from "@/lib/api";
 import { baseURL } from "@/resources/config";
+import buildPageMetadata from "@/src/lib/seo";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -14,30 +16,20 @@ export async function generateMetadata(
   const { slug } = await params;
   const { metadata } = await getProject(decodeURIComponent(slug));
   const url = `/projects/${slug}`;
-  return {
+  return buildPageMetadata({
     title: metadata.title,
+    fullTitle: metadata.title,
     description: metadata.description,
-    alternates: {
-      canonical: url,
-    },
+    path: url,
     openGraph: {
-      locale: "es",
       type: "article",
-      url: url,
-      title: metadata.title,
-      description: metadata.description,
       authors: ["Tony Angello Acuña Flores"],
       publishedTime: metadata.publishedAt.toDateString(),
       modifiedTime: metadata.lastModified.toDateString(),
       tags: metadata.stack,
       section: "Casos de Estudio",
     },
-    twitter: {
-      card: "summary_large_image",
-      title: metadata.title,
-      description: metadata.description,
-    },
-  };
+  });
 }
 
 export default async function Page({
@@ -67,12 +59,7 @@ export default async function Page({
   };
   return (
     <main className="min-h-screen max-w-2xl mx-auto px-6 py-20 md:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JSONLd json={jsonLd}></JSONLd>
       <article>
         <header className="mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
