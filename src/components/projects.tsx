@@ -22,21 +22,23 @@ export default async function ProjectsSection({ id }: { id: string }) {
         </p>
 
         <div className="space-y-6">
-          {projects.map(({ metadata }, index) => (
+          {projects.map(({ metadata, slug }, index) => (
             <article
               key={index}
-              className="group p-6 sm:p-8 bg-background rounded-xl border border-border hover:border-border-subtle transition-colors shadow-xs dark:shadow-none"
+              className="group relative p-6 sm:p-8 bg-background rounded-xl border border-border hover:border-border-subtle transition-colors shadow-xs dark:shadow-none"
             >
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-1">
-                    {metadata.title}
+                    <Link href={`/projects/${slug}`} className="after:absolute after:inset-0">
+                      {metadata.title}
+                    </Link>
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {metadata.description}
                   </p>
                 </div>
-                <div className="flex gap-3 shrink-0">
+                <div className="relative z-10 flex gap-3 shrink-0">
                   {metadata.github && (
                     <a
                       href={metadata.github}
