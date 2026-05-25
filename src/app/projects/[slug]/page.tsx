@@ -2,6 +2,7 @@ import JSONLd from "@/components/jsonld";
 import { getProject } from "@/lib/api";
 import { baseURL } from "@/resources/config";
 import buildPageMetadata from "@/src/lib/seo";
+import { person } from "@/src/resources/content";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -23,7 +24,7 @@ export async function generateMetadata(
     path: url,
     openGraph: {
       type: "article",
-      authors: ["Tony Angello Acuña Flores"],
+      authors: [person.name],
       publishedTime: metadata.publishedAt.toDateString(),
       modifiedTime: metadata.lastModified.toDateString(),
       tags: metadata.stack,
