@@ -8,6 +8,7 @@ export type ProjectMetadata = {
   demo?: string;
   publishedAt: Date;
   lastModified: Date;
+  image: string;
 };
 
 export type ProjectData = {

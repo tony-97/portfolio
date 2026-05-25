@@ -4,6 +4,7 @@ import { baseURL } from "@/resources/config";
 import buildPageMetadata from "@/src/lib/seo";
 import { person } from "@/src/resources/content";
 import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -29,6 +30,7 @@ export async function generateMetadata(
       modifiedTime: metadata.lastModified.toDateString(),
       tags: metadata.stack,
       section: "Casos de Estudio",
+      images: [{ url: metadata.image }],
     },
   });
 }
@@ -42,13 +44,17 @@ export default async function Page({
   const { metadata, component: MDXComponent } = await getProject(
     decodeURIComponent(slug),
   );
+  const dynamicPart = metadata.image.replace("/images/projects/", "");
+  const { default: image } = await import(
+    `@/public/images/projects/${dynamicPart}`
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: metadata.title,
     description: metadata.description,
-    image: `${baseURL}/projects/${slug}/opengraph-image`,
+    image: `${baseURL}${metadata.image}`,
     author: {
       "@id": `${baseURL}/#person`,
     },
@@ -70,6 +76,11 @@ export default async function Page({
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               {metadata.description}
             </p>
+          )}
+          {metadata.image && (
+            <div className="relative w-full mb-6 overflow-hidden rounded-xl border border-border">
+              <Image src={image} alt={metadata.title} loading="eager" />
+            </div>
           )}
           {metadata.stack && metadata.stack.length > 0 && (
             <ul className="flex flex-wrap gap-1.5 mb-6">
