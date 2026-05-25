@@ -105,7 +105,16 @@ export default async function Page({
             )}
           </div>
         </header>
-        <section className="prose prose-stone max-w-none prose-lg prose-headings:text-foreground prose-headings:font-semibold prose-a:text-foreground prose-a:underline hover:prose-a:opacity-70 prose-img:rounded-xl prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground">
+        <section
+          className="prose prose-stone max-w-none prose-lg prose-headings:text-foreground prose-headings:font-semibold prose-a:text-foreground prose-a:underline hover:prose-a:opacity-70 prose-img:rounded-xl prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground 
+          prose-code:bg-surface-raised 
+          prose-code:text-accent 
+          prose-code:px-1.5 
+          prose-code:py-0.5 
+          prose-code:rounded-md 
+          prose-code:before:hidden 
+          prose-code:after:hidden"
+        >
           <MDXComponent></MDXComponent>
         </section>
       </article>
