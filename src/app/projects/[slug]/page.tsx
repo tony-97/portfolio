@@ -1,5 +1,5 @@
 import JSONLd from "@/components/jsonld";
-import { getProject } from "@/lib/api";
+import { getProject, listProjects } from "@/lib/api";
 import { baseURL } from "@/resources/config";
 import buildPageMetadata from "@/src/lib/seo";
 import { person } from "@/src/resources/content";
@@ -10,6 +10,13 @@ type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export async function generateStaticParams() {
+  const projects = await listProjects();
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
 export async function generateMetadata(
   { params, searchParams }: Props,

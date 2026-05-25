@@ -2,7 +2,9 @@ import { listProjects } from "@/lib/api";
 import { baseURL } from "@/resources/config";
 import { MetadataRoute } from "next";
 
-export async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export const dynamic = "force-static";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await listProjects();
   return [
     {
