@@ -1,22 +1,45 @@
 export const metadata = {
-  title: "CloudCast Weather",
-  description: "Un panel de clima en tiempo real",
-  goal: "Quería construir una aplicación que obtuviera datos meteorológicos en tiempo real según la ubicación del usuario para practicar la integración de APIs de terceros.",
-  stack: ["React", "Tailwind CSS", "OpenWeather API"],
+  title: "IDAT Sync",
+  description:
+    "Una herramienta de automatización basada en Python que sincroniza de forma transparente los materiales de cursos de idat y las grabaciones de clases desde Moodle y Microsoft SharePoint en un directorio local limpio y bien estructurado.",
+  goal: "Eliminar el trabajo repetitivo y semanal de navegar manualmente por múltiples portales de aprendizaje, automatizando completamente la autenticación, extracción y organización de los recursos de estudio necesarios.",
+  stack: ["Python", "Playwright", "Youtube-dl"],
   challenge:
-    "Lo más difícil fue manejar las llamadas asíncronas a la API y gestionar el estado cuando los datos estaban cargando o si el usuario denegaba el acceso a su ubicación. Lo resolví implementando funciones async/await y añadiendo una interfaz robusta para estados de carga y manejo de errores.",
-  github: "#",
-  demo: "#",
+    "Las solicitudes API estándar fallaban contra las complejas barreras de SSO de SharePoint. Para resolverlo, diseñé un puente de autenticación headless usando Playwright para capturar las cookies de sesión del navegador en tiempo real. Inyectar estas cookies en office365-rest-python-client (para documentos) y yt-dlp (para videos) permitió evadir las restricciones de inicio de sesión y crear un pipeline completamente automatizado.",
+  github: "https://github.com/tony-97/idat-sync",
   publishedAt: new Date("2026-5-21"),
   lastModified: new Date("2026-5-21"),
 };
 
-# ¡Bienvenido a mi página MDX!
+### Descripción General
 
-Este es un texto en **negrita** y en _cursiva_.
+Los portales de aprendizaje y los sistemas de almacenamiento en la nube son esenciales, pero navegar por ellos es notoriamente engorroso. Cada semana perdía tiempo valioso haciendo clic manualmente en Moodle para verificar nuevos materiales, autenticándome en Microsoft SharePoint para descargar presentaciones, y buscando las grabaciones de clases asociadas. Diseñé una herramienta de automatización basada en Python para eliminar este trabajo repetitivo, sincronizando de forma transparente todos los archivos del curso y videos en un directorio local estructurado y disponible sin conexión.
 
-Esta es una lista en markdown:
+### Stack Tecnológico
 
-- Uno
-- Dos
-- Tres
+- **APIs:** API Web de Moodle, API de SharePoint
+- **Autenticación:** Playwright
+- **Descargador de Documentos:** `office365-rest-python-client`
+- **Descargador de Videos:** `yt-dlp`
+
+### Arquitectura y Enfoque
+
+La herramienta actúa como un orquestador headless que conecta múltiples plataformas institucionales en un único pipeline automatizado:
+
+1. **Extracción de Metadatos:** El script consulta las APIs de Moodle y SharePoint para analizar el plan de estudios del curso, mapear las estructuras de carpetas necesarias y resolver los endpoints de descarga para nuevos materiales.
+2. **Autenticación Headless:** Debido a que los entornos de Microsoft 365 utilizan flujos complejos de Single Sign-On (SSO) que bloquean la autenticación REST estándar, utilicé Playwright para iniciar programáticamente un navegador, ejecutar el flujo de inicio de sesión y extraer las cookies de sesión autenticadas.
+3. **Descarga de Recursos:**
+
+- Para documentos estándar (PDFs, presentaciones, hojas de cálculo), las cookies extraídas se inyectan en `office365-rest-python-client` para obtener archivos de forma segura directamente del ecosistema OneDrive/SharePoint.
+- Para las grabaciones de clases, el mismo estado de sesión se pasa a `yt-dlp`, permitiendo que la herramienta evada la barrera de autenticación del reproductor de video de SharePoint y descargue de forma segura los archivos de video pesados.
+
+### Desafíos Técnicos Superados
+
+**Gestión Unificada de Cookies Entre Bibliotecas Diversas**
+El principal obstáculo fue cerrar la brecha entre el SSO basado en navegador y los descargadores basados en terminal. Las solicitudes de tokens API estándar fallaban contra el portal de inicio de sesión de la universidad. Al utilizar Playwright para replicar una sesión de usuario genuina, pude capturar los datos de cookies sin procesar. El logro técnico principal fue escribir un manejador de sesión que serializaba el estado de Playwright en un formato universal que tanto el cliente Python de Office 365 como `yt-dlp` podían procesar sin problemas, creando una cadena de autenticación ininterrumpida a través de tres interfaces completamente diferentes.
+
+### Impacto
+
+- **Eliminación del Trabajo Manual:** Ahorró horas de clics repetitivos por semestre al automatizar completamente la obtención de materiales de estudio.
+- **Disponibilidad Sin Conexión:** Generó un repositorio local limpio y altamente organizado, garantizando capacidades de estudio ininterrumpidas independientemente del tiempo de inactividad del portal o la disponibilidad de internet.
+- **Base Escalable:** Construyó un pipeline modular de autenticación y descarga que puede adaptarse fácilmente para extraer y sincronizar datos de otros entornos protegidos por SSO.
