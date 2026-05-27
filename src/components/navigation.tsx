@@ -52,7 +52,14 @@ export default function Navigation<T extends React.ElementType[]>({
     } else {
       isActive = pathname === "/" && activeSection === section.id;
     }
-    const href = sectionPath === "/" ? `/#${section.id}` : sectionPath;
+    let href = "";
+    if (pathname === "/" && sectionPath === "/") {
+      href = `#${section.id}`;
+    } else if (sectionPath === "/") {
+      href = `/#${section.id}`;
+    } else {
+      href = sectionPath;
+    }
     return { isActive, href };
   };
 
