@@ -12,7 +12,7 @@ export default function buildPageMetadata({
   path,
 }: MetadataProps): Metadata {
   return {
-    title,
+    ...(title && { title }),
     description,
     openGraph: {
       type: "website",
