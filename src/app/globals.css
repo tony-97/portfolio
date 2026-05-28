@@ -54,19 +54,6 @@
   }
 }
 
-/* ─── Base ──────────────────────────────────────────────────────────── */
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: #29252430;
-}
-
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
