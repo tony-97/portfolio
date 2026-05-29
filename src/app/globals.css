@@ -68,3 +68,9 @@ button {
     border-color 0.2s ease,
     opacity 0.2s ease;
 }
+
+p {
+  line-height: 1.5;
+  margin-block: 1rem;
+  margin-block: 1lh;
+}
