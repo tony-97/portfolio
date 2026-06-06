@@ -1,8 +1,10 @@
 # Software Developer Portfolio
 
-<p align="center">
+<div align="center">
 
-![Portfolio preview](./images/portfolio_preview.webp)
+[![Portfolio preview](./images/portfolio_preview.webp)](https://tony-97.github.io/portfolio/)
+
+</div>
 
 </p>
 
