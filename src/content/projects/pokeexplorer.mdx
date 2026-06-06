@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "PokeExplorer",
+  description:
+    "Aplicación móvil nativa para Android que permite explorar el catálogo completo de Pokémon consumiendo la PokeAPI, optimizada con scroll infinito y manejo de estado global.",
+  goal: "Explorar la viabilidad y potencia de construir aplicaciones móviles verdaderamente nativas utilizando el ecosistema de tecnologías web como React y TypeScript.",
+  stack: ["React Native", "TypeScript", "Redux", "PokeAPI", "GitHub-Actions"],
+  challenge:
+    "Garantizar un rendimiento fluido al renderizar listas largas mediante scroll infinito, y automatizar la generación de Releases (APK/AAB) a través de un pipeline CI/CD lanzado por tags de versión.",
+  github: "https://github.com/tony-97/PokeExplorer",
+  demo: "https://github.com/tony-97/PokeExplorer/releases/latest",
+  publishedAt: new Date("2025-06-05"),
+  lastModified: new Date("2026-06-05"),
+  image: "/assets/images/projects/pokeexplorer/pokeexplorer_mockup.png", // Reemplaza con la ruta real de tu imagen
+};
+
+### El Contexto y la Motivación
+
+Como desarrolladores, la transición del desarrollo web al móvil siempre plantea un dilema: ¿aprender un lenguaje completamente nuevo (como Swift o Kotlin) o aprovechar el conocimiento existente?
+
+Al explorar formas de construir aplicaciones móviles, llegué a una conclusión fascinante: el gigantesco y maduro ecosistema web que hemos construido durante años es ahora una de las plataformas más sólidas para el desarrollo móvil. Gracias a **React Native**, es posible crear aplicaciones móviles verdaderamente nativas utilizando tecnologías web estándar como **React y TypeScript**.
+
+Para poner a prueba esta teoría y explorar a fondo este puente entre la web y el móvil, decidí construir **PokeExplorer**: una aplicación nativa para Android diseñada para explorar el vasto mundo de los Pokémon.
+
+---
+
+### El Proyecto
+
+**PokeExplorer** es una aplicación móvil nativa que se conecta con la popular **PokeAPI** para mostrar un catálogo completo de Pokémon. El objetivo principal no era solo mostrar datos, sino aplicar buenas prácticas de desarrollo, rendimiento en listas largas y automatización de despliegues, replicando un entorno de desarrollo profesional.
+
+#### **Stack Tecnológico**
+
+- **Framework Core:** React Native (Nativo) + React (UI).
+- **Lenguaje:** TypeScript (Para un tipado estricto y código predecible).
+- **Gestor de Estado:** Redux.
+- **Fuente de Datos:** RESTful (PokeAPI).
+- **CI/CD:** GitHub Actions.
+
+---
+
+### Desafíos Técnicos y Soluciones
+
+A lo largo del desarrollo de **PokeExplorer**, me enfoqué en tres pilares fundamentales que toda aplicación móvil moderna debe dominar:
+
+#### 1. Rendimiento en la Interfaz: Scroll Infinito
+
+Cargar más de 1000 Pokémon de golpe destruiría la memoria de cualquier dispositivo móvil. Para garantizar una experiencia de usuario (UX) impecable y un rendimiento fluido, implementé un sistema de **Scroll Infinito**.
+
+- **La solución:** La aplicación realiza llamadas paginadas a la PokeAPI. A medida que el usuario se acerca al final de la lista en la pantalla, se intercepta el evento y se solicita el siguiente lote de datos, renderizándolos de manera eficiente sin bloquear el hilo principal de la interfaz.
+
+#### 2. Arquitectura Predecible: Estado Global con Redux
+
+A medida que la aplicación crecía, pasar propiedades (props) de un componente a otro se volvía insostenible.
+
+- **La solución:** Integré **Redux** para manejar el estado global de la aplicación. Esto me permitió tener una única "fuente de la verdad" para los datos de los Pokémon cacheados, los estados de carga (loading) y el manejo de errores, separando limpiamente la lógica de negocio de la capa de presentación.
+
+#### 3. Automatización Profesional: CI/CD con GitHub Actions
+
+Uno de los procesos más tediosos del desarrollo móvil es la compilación manual y la generación del archivo instalable (APK/AAB). Quería que el repositorio funcionara de manera autónoma.
+
+- **La solución:** Configuré un pipeline de Integración y Entrega Continua (CI/CD) utilizando **GitHub Actions**. Ahora, el flujo de trabajo es completamente profesional: el servidor en la nube no se activa con cualquier cambio, sino únicamente **cuando se hace un _push_ de un tag de versión** (por ejemplo, `v0.1.0`). En ese momento, el pipeline compila automáticamente el proyecto de Android y genera un _Release_ oficial en GitHub con el archivo listo para ser descargado e instalado.
+
+---
+
+### Conclusión y Aprendizajes
+
+Construir **PokeExplorer** me confirmó que las tecnologías web aplicadas al entorno móvil no son solo un "atajo", sino una solución robusta y de grado empresarial.
+
+El uso de **TypeScript** redujo drásticamente los errores en tiempo de ejecución, mientras que la combinación de **Redux** y **React Native** ofreció una experiencia de desarrollo fluida y predecible. Finalmente, automatizar el _release_ de Android con **GitHub Actions** fue la cereza del pastel, demostrando que es posible tener un ciclo de vida de software moderno y eficiente en proyectos personales.
+
+**PokeExplorer** ya no es solo una app para explorar Pokémon; es la prueba de que el poderoso ecosistema web está más que listo para dominar el mundo móvil.
