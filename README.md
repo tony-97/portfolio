@@ -1,5 +1,11 @@
 # Software Developer Portfolio
 
+<p align="center">
+
+![Portfolio preview](./images/portfolio_preview.webp)
+
+</p>
+
 A personal portfolio and project showcase built with **Next.js 16**, statically exported via **SSG**, and automatically deployed to **GitHub Pages** through **GitHub Actions**. Project case studies are authored in **MDX**, enabling rich, component-driven content alongside standard Markdown.
 
 ## ✨ Features
