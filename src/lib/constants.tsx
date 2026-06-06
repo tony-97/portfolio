@@ -1,8 +1,9 @@
 import {
+  AppWindow,
   Binary,
   Blocks,
-  Box,
   Braces,
+  Brackets,
   Code2,
   Cpu,
   Database,
@@ -12,7 +13,6 @@ import {
   Github,
   Layers,
   Layout,
-  Leaf,
   Network,
   Package,
   Palette,
@@ -22,6 +22,7 @@ import {
   Terminal,
   TerminalSquare,
   Wind,
+  Workflow,
   Zap,
 } from "lucide-react";
 
@@ -59,7 +60,9 @@ export const skills: {
       { name: "HTML5", icon: <FileCode2 className="w-3.5 h-3.5" /> },
       { name: "CSS3", icon: <Palette className="w-3.5 h-3.5" /> },
       { name: "JavaScript", icon: <Braces className="w-3.5 h-3.5" /> },
+      { name: "TypeScript", icon: <Brackets className="w-3.5 h-3.5" /> },
       { name: "React.js", icon: <Blocks className="w-3.5 h-3.5" /> },
+      { name: "Next.js", icon: <AppWindow className="w-3.5 h-3.5" /> },
       { name: "Tailwind CSS", icon: <Wind className="w-3.5 h-3.5" /> },
     ],
   },
@@ -81,9 +84,7 @@ export const skills: {
     items: [
       { name: "C++", icon: <Cpu className="w-3.5 h-3.5" /> },
       { name: "C", icon: <Binary className="w-3.5 h-3.5" /> },
-      { name: "PostgreSQL", icon: <Database className="w-3.5 h-3.5" /> },
-      { name: "MongoDB", icon: <Leaf className="w-3.5 h-3.5" /> },
-      { name: "Mongoose", icon: <Box className="w-3.5 h-3.5" /> },
+      { name: "MySQL", icon: <Database className="w-3.5 h-3.5" /> },
     ],
   },
   {
@@ -92,6 +93,10 @@ export const skills: {
     items: [
       { name: "Git", icon: <GitBranch className="w-3.5 h-3.5" /> },
       { name: "GitHub", icon: <Github className="w-3.5 h-3.5" /> },
+      {
+        name: "CI/CD GitHub Actions",
+        icon: <Workflow className="w-3.5 h-3.5" />,
+      },
       { name: "VS Code", icon: <Code2 className="w-3.5 h-3.5" /> },
       { name: "Postman", icon: <Send className="w-3.5 h-3.5" /> },
       { name: "NPM", icon: <Package className="w-3.5 h-3.5" /> },
