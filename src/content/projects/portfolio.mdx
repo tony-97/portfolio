@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Portafolio Personal de Alto Rendimiento",
+  description:
+    "Portafolio web estático y altamente optimizado construido bajo la arquitectura Jamstack, diseñado para máxima velocidad y SEO.",
+  goal: "Crear una plataforma rápida y escalable para exhibir proyectos, con una gestión de contenido ágil mediante Markdown y costo de infraestructura cero.",
+  stack: [
+    "Next.js",
+    "TailwindCSS",
+    "React",
+    "MDX",
+    "GitHub-Pages",
+    "GitHub-Actions",
+  ],
+  challenge:
+    "Lograr una velocidad extrema y un SEO perfecto, manteniendo al mismo tiempo una forma sencilla de actualizar casos de estudio sin depender de un CMS tradicional.",
+  github: "https://github.com/tony-97/portfolio",
+  demo: "https://tony-97.github.io/portfolio/",
+  publishedAt: new Date("2026-06-04"),
+  lastModified: new Date("2026-06-04"),
+  image: "/images/projects/portfolio/portfolio_preview.webp",
+};
+
+## Resumen del Proyecto
+
+Diseño y desarrollo de un portafolio web personal estático y altamente optimizado. El objetivo principal fue crear una plataforma rápida, escalable y con un excelente posicionamiento SEO para exhibir proyectos y casos de estudio. El sitio está diseñado para que la gestión de contenido sea tan ágil como escribir texto plano, eliminando la necesidad de un CMS tradicional o bases de datos, y manteniendo los costos de infraestructura en cero.
+
+## El Reto
+
+Como desarrollador, necesitaba una carta de presentación digital que reflejara mis habilidades técnicas. Los requisitos fundamentales eran:
+
+- **Velocidad extrema y SEO:** El sitio debía cargar casi instantáneamente y ser fácilmente indexable por los motores de búsqueda.
+- **Mantenibilidad de contenido:** Necesitaba una forma rápida de documentar nuevos proyectos y casos de estudio sin lidiar con interfaces de administración complejas.
+- **Costo y Despliegue:** La infraestructura debía ser gratuita y el proceso de publicación completamente automatizado.
+
+## La Solución
+
+Se optó por una arquitectura Jamstack utilizando **Next.js** y **React** para la construcción de la interfaz, aprovechando la Generación de Sitios Estáticos (SSG). Para el contenido, se implementó **MDX**, permitiendo escribir los casos de estudio en Markdown con la capacidad de inyectar componentes interactivos de React. El proyecto se aloja en **GitHub Pages** con un pipeline de CI/CD automatizado mediante **GitHub Actions**.
+
+## Tecnologías Utilizadas
+
+- **Framework:** Next.js, React
+- **Contenido:** MDX (Markdown + JSX)
+- **Estrategia de Renderizado:** SSG (Static Site Generation) a través de `output: 'export'`
+- **Hosting:** GitHub Pages
+- **CI/CD:** GitHub Actions
+
+## Implementación y Características Clave
+
+### 1. Generación de Sitio Estático (SSG) con Next.js
+
+Para maximizar el rendimiento y el SEO, el portafolio no depende de un servidor Node.js en tiempo de ejecución. En su lugar, Next.js pre-renderiza todas las páginas en archivos HTML, CSS y JavaScript estáticos durante el tiempo de compilación. Esto garantiza un _Time to First Byte_ (TTFB) mínimo y una experiencia de usuario fluida.
+
+### 2. Gestión de Contenido Ágil con MDX
+
+La integración de MDX transformó la manera de gestionar el portafolio. Cada nuevo proyecto o caso de estudio es simplemente un archivo `.mdx` en el repositorio.
+
+- **Ventaja:** Permite combinar la simplicidad de la sintaxis de Markdown para redactar texto y estructurar información, con el poder de React para incrustar componentes personalizados (como galerías de imágenes, bloques de código con resaltado de sintaxis o botones interactivos) directamente dentro de la narrativa del caso de estudio.
+
+### 3. Optimización SEO y Accesibilidad
+
+Al ser un sitio estático pre-renderizado, los web crawlers de Google pueden leer el contenido de inmediato. Se implementaron:
+
+- Etiquetas meta dinámicas para cada página y caso de estudio (Open Graph, Twitter Cards).
+- Estructura HTML semántica y atributos ARIA para garantizar la accesibilidad.
+- Imágenes optimizadas para reducir el _Cumulative Layout Shift_ (CLS) y mejorar el _Largest Contentful Paint_ (LCP).
+
+### 4. Automatización de Despliegue (CI/CD)
+
+Para eliminar la fricción manual, se configuró un flujo de trabajo (workflow) en GitHub Actions.
+
+- **El proceso:** Cada vez que se hace un `push` a la rama principal (master), el pipeline instala las dependencias, construye el proyecto estático (build) y despliega automáticamente los archivos resultantes en la rama `gh-pages`.
+- **Resultado:** Un entorno de publicación continuo. Escribir un nuevo caso de estudio es tan simple como hacer un _commit_ de un archivo MDX, y el sitio se actualiza en la web en un par de minutos.
+
+## Resultados y Conclusión
+
+El resultado final es un portafolio robusto, seguro y autosuficiente. Al compilarse estáticamente y alojarse en una CDN global a través de GitHub Pages, el sitio logra **puntuaciones casi perfectas en las auditorías de rendimiento y SEO de Lighthouse**.
+
+Este proyecto no solo sirve como un escaparate para mi trabajo, sino que la propia arquitectura es una demostración de buenas prácticas en el desarrollo web moderno: automatización de procesos, optimización de recursos y un enfoque centrado en la experiencia del usuario y del desarrollador.

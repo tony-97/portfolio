@@ -30,7 +30,10 @@ export default async function ProjectsSection({ id }: { id: string }) {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-1">
-                    <Link href={`/projects/${slug}`} className="after:absolute after:inset-0">
+                    <Link
+                      href={`/projects/${slug}`}
+                      className="after:absolute after:inset-0"
+                    >
                       {metadata.title}
                     </Link>
                   </h3>
