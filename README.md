@@ -10,7 +10,8 @@
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![MDX](https://img.shields.io/badge/MDX-3-FCB32C?style=flat&logo=mdx&logoColor=black)](https://mdxjs.com/)
 [![Motion](https://img.shields.io/badge/Motion-12-FF0055?style=flat&logo=framer&logoColor=white)](https://motion.dev/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-deployed-222222?style=flat&logo=githubpages&logoColor=white)](https://pages.github.com/)
+
+[![GitHub Pages Deploy](https://img.shields.io/github/actions/workflow/status/tony-97/portfolio/deploy.yml?style=flat&logo=github&label=GitHub%20Pages)](https://github.com/tony-97/portfolio/actions)
 [![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat)](./LICENSE.md)
 
 </div>
