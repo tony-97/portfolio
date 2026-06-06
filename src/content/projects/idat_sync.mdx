@@ -1,8 +1,8 @@
 export const metadata = {
   title: "IDAT Sync",
   description:
-    "Una herramienta de automatización basada en Python que sincroniza de forma transparente los materiales de cursos de idat y las grabaciones de clases desde Moodle y Microsoft SharePoint en un directorio local limpio y bien estructurado[cite: 1].",
-  goal: "Eliminar el trabajo repetitivo y semanal de navegar manualmente por múltiples portales de aprendizaje, automatizando completamente la autenticación, extracción y organización de los recursos de estudio necesarios[cite: 1].",
+    "Una herramienta de automatización basada en Python que sincroniza de forma transparente los materiales de cursos de idat y las grabaciones de clases desde Moodle y Microsoft SharePoint en un directorio local limpio y bien estructurado.",
+  goal: "Eliminar el trabajo repetitivo y semanal de navegar manualmente por múltiples portales de aprendizaje, automatizando completamente la autenticación, extracción y organización de los recursos de estudio necesarios.",
   stack: [
     "Python",
     "Playwright",
@@ -12,7 +12,7 @@ export const metadata = {
     "Tkinter",
   ],
   challenge:
-    "Las solicitudes API estándar fallaban contra las complejas barreras de SSO de SharePoint[cite: 2]. Para resolverlo, diseñé un puente de autenticación headless asíncrono usando Playwright para manejar el flujo de inicio de sesión y MFA, capturando las cookies de sesión en tiempo real[cite: 2]. Inyectar estas cookies en office365-rest-python-client y yt-dlp permitió evadir las restricciones de Entra ID y crear un pipeline completamente automatizado multiplataforma[cite: 2].",
+    "Las solicitudes API estándar fallaban contra las complejas barreras de SSO de SharePoint. Para resolverlo, diseñé un puente de autenticación headless asíncrono usando Playwright para manejar el flujo de inicio de sesión y MFA, capturando las cookies de sesión en tiempo real. Inyectar estas cookies en office365-rest-python-client y yt-dlp permitió evadir las restricciones de Entra ID y crear un pipeline completamente automatizado multiplataforma.",
   github: "https://github.com/tony-97/idat-sync",
   demo: "https://github.com/tony-97/idat-sync/releases/latest",
   publishedAt: new Date("2026-5-21"),
