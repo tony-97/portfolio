@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   experimental: {
-    cssChunking: true,
+    cssChunking: "strict",
     optimizePackageImports: [
       "@mdx-js/loader",
       "@mdx-js/react",

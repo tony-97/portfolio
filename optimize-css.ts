@@ -12,7 +12,7 @@ const beasties = new Beasties({
   preloadFonts: false, // Done by Next.js.
   mergeStylesheets: true,
   preload: "media",
-  pruneSource: true, // Keep false if using global Tailwind CSS!
+  pruneSource: false, // Keep false if using global Tailwind CSS!
 });
 
 // Emulates a basic glob matching strategy recursively
