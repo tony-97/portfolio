@@ -13,11 +13,15 @@ import dynamic from "next/dynamic";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  preload: true,
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: true,
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -43,7 +47,9 @@ export const metadata: Metadata = {
   },
 };
 
-const Navigation = dynamic(() => import("@/components/navigation"), { ssr: true });
+const Navigation = dynamic(() => import("@/components/navigation"), {
+  ssr: true,
+});
 
 export default function RootLayout({
   children,
