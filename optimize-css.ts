@@ -7,7 +7,8 @@ import Beasties from "beasties";
 const path = "out";
 
 const beasties = new Beasties({
-  inlineFonts: true, // Next.js does this with inlineCss.
+  inlineFonts: false, // Next.js does this with inlineCss.
+  publicPath: process.env.PAGES_BASE_PATH,
   path,
   preloadFonts: false, // Done by Next.js.
   mergeStylesheets: true,
