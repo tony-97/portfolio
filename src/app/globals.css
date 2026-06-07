@@ -4,11 +4,6 @@
 /* Class-based dark mode — toggled by adding .dark to <html> */
 @variant dark (&:where(.dark, .dark *));
 
-@font-face {
-  font-family: "Geist Sans";
-  src: local("Geist Sans");
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
