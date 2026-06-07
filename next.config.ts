@@ -7,6 +7,20 @@ const nextConfig: NextConfig = {
   basePath: process.env.PAGES_BASE_PATH,
   images: { unoptimized: true },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    optimizePackageImports: [
+      "@mdx-js/loader",
+      "@mdx-js/react",
+      "@next/mdx",
+      "@types/mdx",
+      "lucide-react",
+      "motion",
+      "next",
+      "next-themes",
+      "react",
+      "react-dom",
+    ],
+  },
 };
 
 const withMDX = createMDX({});
