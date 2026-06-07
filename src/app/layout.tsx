@@ -1,4 +1,3 @@
-import Navigation from "@/components/navigation";
 import { LandingPageProvider } from "@/context/landing_page_context";
 import { sections } from "@/lib/constants";
 import "./globals.css";
@@ -8,6 +7,8 @@ import { person } from "@/resources/content";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import dynamic from "next/dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,8 @@ export const metadata: Metadata = {
     },
   },
 };
+
+const Navigation = dynamic(() => import("@/components/navigation"), { ssr: true });
 
 export default function RootLayout({
   children,

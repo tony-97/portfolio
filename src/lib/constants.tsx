@@ -28,11 +28,13 @@ import {
 
 import { JSX } from "react";
 
-import AboutSection from "@/components/about";
-import ContactSection from "@/components/contact";
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/hero";
-import ProjectsSection from "@/components/projects";
-import SkillsSection from "@/components/skills";
+
+const AboutSection = dynamic(() => import("@/components/about"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/contact"), { ssr: true });
+const ProjectsSection = dynamic(() => import("@/components/projects"), { ssr: true });
+const SkillsSection = dynamic(() => import("@/components/skills"), { ssr: true });
 
 export type Section<T extends React.ElementType> = {
   id: string;
@@ -53,56 +55,56 @@ export const skills: {
   icon: JSX.Element;
   items: { name: string; icon: JSX.Element }[];
 }[] = [
-  {
-    category: "Frontend",
-    icon: <Layout className="w-5 h-5" />,
-    items: [
-      { name: "HTML5", icon: <FileCode2 className="w-3.5 h-3.5" /> },
-      { name: "CSS3", icon: <Palette className="w-3.5 h-3.5" /> },
-      { name: "JavaScript", icon: <Braces className="w-3.5 h-3.5" /> },
-      { name: "TypeScript", icon: <Brackets className="w-3.5 h-3.5" /> },
-      { name: "React.js", icon: <Blocks className="w-3.5 h-3.5" /> },
-      { name: "Next.js", icon: <AppWindow className="w-3.5 h-3.5" /> },
-      { name: "Tailwind CSS", icon: <Wind className="w-3.5 h-3.5" /> },
-    ],
-  },
-  {
-    category: "Backend",
-    icon: <Server className="w-5 h-5" />,
-    items: [
-      { name: "Node.js", icon: <ServerCog className="w-3.5 h-3.5" /> },
-      { name: "Express", icon: <Zap className="w-3.5 h-3.5" /> },
-      { name: "PHP", icon: <FileCode className="w-3.5 h-3.5" /> },
-      { name: "Laravel", icon: <Layers className="w-3.5 h-3.5" /> },
-      { name: "Python", icon: <TerminalSquare className="w-3.5 h-3.5" /> },
-      { name: "REST APIs", icon: <Network className="w-3.5 h-3.5" /> },
-    ],
-  },
-  {
-    category: "Sistemas y Datos",
-    icon: <Database className="w-5 h-5" />,
-    items: [
-      { name: "C++", icon: <Cpu className="w-3.5 h-3.5" /> },
-      { name: "C", icon: <Binary className="w-3.5 h-3.5" /> },
-      { name: "MySQL", icon: <Database className="w-3.5 h-3.5" /> },
-    ],
-  },
-  {
-    category: "Herramientas",
-    icon: <Terminal className="w-5 h-5" />,
-    items: [
-      { name: "Git", icon: <GitBranch className="w-3.5 h-3.5" /> },
-      { name: "GitHub", icon: <Github className="w-3.5 h-3.5" /> },
-      {
-        name: "CI/CD GitHub Actions",
-        icon: <Workflow className="w-3.5 h-3.5" />,
-      },
-      { name: "VS Code", icon: <Code2 className="w-3.5 h-3.5" /> },
-      { name: "Postman", icon: <Send className="w-3.5 h-3.5" /> },
-      { name: "NPM", icon: <Package className="w-3.5 h-3.5" /> },
-    ],
-  },
-];
+    {
+      category: "Frontend",
+      icon: <Layout className="w-5 h-5" />,
+      items: [
+        { name: "HTML5", icon: <FileCode2 className="w-3.5 h-3.5" /> },
+        { name: "CSS3", icon: <Palette className="w-3.5 h-3.5" /> },
+        { name: "JavaScript", icon: <Braces className="w-3.5 h-3.5" /> },
+        { name: "TypeScript", icon: <Brackets className="w-3.5 h-3.5" /> },
+        { name: "React.js", icon: <Blocks className="w-3.5 h-3.5" /> },
+        { name: "Next.js", icon: <AppWindow className="w-3.5 h-3.5" /> },
+        { name: "Tailwind CSS", icon: <Wind className="w-3.5 h-3.5" /> },
+      ],
+    },
+    {
+      category: "Backend",
+      icon: <Server className="w-5 h-5" />,
+      items: [
+        { name: "Node.js", icon: <ServerCog className="w-3.5 h-3.5" /> },
+        { name: "Express", icon: <Zap className="w-3.5 h-3.5" /> },
+        { name: "PHP", icon: <FileCode className="w-3.5 h-3.5" /> },
+        { name: "Laravel", icon: <Layers className="w-3.5 h-3.5" /> },
+        { name: "Python", icon: <TerminalSquare className="w-3.5 h-3.5" /> },
+        { name: "REST APIs", icon: <Network className="w-3.5 h-3.5" /> },
+      ],
+    },
+    {
+      category: "Sistemas y Datos",
+      icon: <Database className="w-5 h-5" />,
+      items: [
+        { name: "C++", icon: <Cpu className="w-3.5 h-3.5" /> },
+        { name: "C", icon: <Binary className="w-3.5 h-3.5" /> },
+        { name: "MySQL", icon: <Database className="w-3.5 h-3.5" /> },
+      ],
+    },
+    {
+      category: "Herramientas",
+      icon: <Terminal className="w-5 h-5" />,
+      items: [
+        { name: "Git", icon: <GitBranch className="w-3.5 h-3.5" /> },
+        { name: "GitHub", icon: <Github className="w-3.5 h-3.5" /> },
+        {
+          name: "CI/CD GitHub Actions",
+          icon: <Workflow className="w-3.5 h-3.5" />,
+        },
+        { name: "VS Code", icon: <Code2 className="w-3.5 h-3.5" /> },
+        { name: "Postman", icon: <Send className="w-3.5 h-3.5" /> },
+        { name: "NPM", icon: <Package className="w-3.5 h-3.5" /> },
+      ],
+    },
+  ];
 
 export const sections = defineSections([
   { id: "hero", label: "Inicio", component: HeroSection },
