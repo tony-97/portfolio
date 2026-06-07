@@ -2,8 +2,8 @@
 
 import { useLandingPage } from "@/context/landing_page_context";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { AnimatePresence } from "motion/react";
-import * as motion from "motion/react-client";
+import { AnimatePresence, LazyMotion } from "motion/react";
+import * as m from "motion/react-m";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -63,122 +63,125 @@ export default function Navigation<T extends React.ElementType[]>({
     return { isActive, href };
   };
 
+  const features = () => import("@/lib/features").then(({ all }) => all);
   return (
-    <motion.header
-      ref={ref}
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="sticky w-full top-0 z-50 bg-surface-raised/60 backdrop-blur-md border-b border-border"
-    >
-      <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
-        >
-          tony &#123; &#125;
-        </Link>
+    <LazyMotion features={features}>
+      <m.header
+        ref={ref}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="sticky w-full top-0 z-50 bg-surface-raised/60 backdrop-blur-md border-b border-border"
+      >
+        <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
+          >
+            tony &#123; &#125;
+          </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-sm">
-          {sections.map((section, index) => {
-            const { href, isActive } = sectionNavigation(section);
-            return (
-              <li key={section.id} className="relative">
-                <Link
-                  href={href}
-                  className={`py-1.5 transition-colors ${
-                    isActive
-                      ? "text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {section.label}
-                </Link>
-                {isActive && (
-                  <motion.div
-                    layoutId="active-indicator"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                    style={{ originY: "0px" }}
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full"
-                  ></motion.div>
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex items-center gap-8 text-sm">
+            {sections.map((section, index) => {
+              const { href, isActive } = sectionNavigation(section);
+              return (
+                <li key={section.id} className="relative">
+                  <Link
+                    href={href}
+                    className={`py-1.5 transition-colors ${
+                      isActive
+                        ? "text-foreground font-medium"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {section.label}
+                  </Link>
+                  {isActive && (
+                    <m.div
+                      layoutId="active-indicator"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                      style={{ originY: "0px" }}
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full"
+                    ></m.div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            {isClient && (
+              <button
+                onClick={toggleTheme}
+                aria-label="Cambiar modo oscuro"
+                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
                 )}
-              </li>
-            );
-          })}
-        </ul>
+              </button>
+            )}
 
-        <div className="flex items-center gap-3">
-          {/* Theme Toggle */}
-          {isClient && (
+            {/* Mobile Menu Toggle */}
             <button
-              onClick={toggleTheme}
-              aria-label="Cambiar modo oscuro"
-              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
+              className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Abrir menú"
             >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4" />
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
               ) : (
-                <Moon className="w-4 h-4" />
+                <Menu className="w-5 h-5" />
               )}
             </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <m.nav
+              aria-label="Menú móvil"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-background border-b border-border px-6 py-4"
+            >
+              <ul className="flex flex-col gap-3 text-sm">
+                {sections.map((section, index) => {
+                  const { href, isActive } = sectionNavigation(section);
+                  return (
+                    <li key={index}>
+                      <Link
+                        href={href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`block py-1 transition-colors ${
+                          isActive
+                            ? "text-foreground font-medium"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        {section.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </m.nav>
           )}
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Abrir menú"
-          >
-            {isMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.nav
-            aria-label="Menú móvil"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border px-6 py-4"
-          >
-            <ul className="flex flex-col gap-3 text-sm">
-              {sections.map((section, index) => {
-                const { href, isActive } = sectionNavigation(section);
-                return (
-                  <li key={index}>
-                    <Link
-                      href={href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`block py-1 transition-colors ${
-                        isActive
-                          ? "text-foreground font-medium"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                      aria-current={isActive ? "page" : undefined}
-                    >
-                      {section.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </motion.header>
+        </AnimatePresence>
+      </m.header>
+    </LazyMotion>
   );
 }
