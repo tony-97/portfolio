@@ -48,9 +48,9 @@ export default async function ProjectsPage() {
             className="group p-6 bg-surface rounded-xl border border-border flex flex-col hover:border-border-subtle transition-colors"
           >
             <div className="flex justify-between items-start mb-3">
-              <h3 className="text-lg font-semibold text-foreground group-hover:opacity-70 transition-opacity">
+              <h2 className="text-lg font-semibold text-foreground group-hover:opacity-70 transition-opacity">
                 <Link href={`/projects/${slug}`}>{metadata.title}</Link>
-              </h3>
+              </h2>
               <div className="flex gap-2.5 ml-3 shrink-0">
                 {metadata.github && (
                   <RepositoryLinkIcon
