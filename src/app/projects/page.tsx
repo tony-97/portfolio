@@ -87,8 +87,9 @@ export default async function ProjectsPage() {
             <Link
               href={`/projects/${slug}`}
               className="inline-flex items-center text-sm font-medium text-foreground hover:opacity-70 transition-opacity mt-auto"
+              aria-label={`Leer caso de estudio de ${metadata.title}`}
             >
-              Leer caso de estudio{" "}
+              Leer caso de estudio
               <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </article>
