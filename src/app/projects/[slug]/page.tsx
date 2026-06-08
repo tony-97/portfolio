@@ -125,7 +125,18 @@ export default async function Page({
           </div>
         </header>
         <section
-          className="prose prose-stone max-w-none prose-lg prose-headings:text-foreground prose-headings:font-semibold prose-a:text-foreground prose-a:underline hover:prose-a:opacity-70 prose-img:rounded-xl prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground 
+          className="prose max-w-none 
+          prose-stone 
+          prose-lg 
+          prose-headings:text-foreground 
+          prose-headings:font-semibold 
+          prose-a:text-foreground 
+          prose-a:underline 
+          hover:prose-a:opacity-70 
+          prose-img:rounded-xl 
+          prose-p:text-muted-foreground 
+          prose-li:text-muted-foreground 
+          prose-strong:text-foreground 
           prose-code:bg-surface-raised 
           prose-code:text-accent 
           prose-code:px-1.5 
