@@ -4,6 +4,52 @@ import Link from "next/link";
 import { listProjects } from "@/lib/api";
 import ScrollAnimation from "./scroll_animation";
 
+export function RepositoryLinkIcon({
+  title,
+  url,
+  className,
+}: {
+  title: string;
+  url: string;
+  className: string;
+}) {
+  return (
+    <a
+      href={url}
+      className="text-muted hover:text-foreground transition-colors"
+      title={`Repositorio en GitHub: ${title}`}
+      aria-label={`Repositorio en GitHub de ${title}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Github className={className || "w-4.5 h-4.5"} aria-hidden="true" />
+    </a>
+  );
+}
+
+export function DemoLinkIcon({
+  title,
+  url,
+  className,
+}: {
+  title: string;
+  url: string;
+  className: string;
+}) {
+  return (
+    <a
+      href={url}
+      className="text-muted hover:text-foreground transition-colors"
+      title={`Demo en vivo: ${title}`}
+      aria-label={`Demo en vivo de ${title}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ExternalLink className={className || "w-4.5 h-4.5"} aria-hidden="true" />
+    </a>
+  );
+}
+
 export default async function ProjectsSection({ id }: { id: string }) {
   const projects = await listProjects();
   return (
@@ -43,23 +89,19 @@ export default async function ProjectsSection({ id }: { id: string }) {
                 </div>
                 <div className="relative z-10 flex gap-3 shrink-0">
                   {metadata.github && (
-                    <a
-                      href={metadata.github}
-                      className="text-muted hover:text-foreground transition-colors"
-                      title="Repositorio en GitHub"
-                    >
-                      <Github className="w-4.5 h-4.5" />
-                    </a>
+                    <RepositoryLinkIcon
+                      title={metadata.title}
+                      url={metadata.github}
+                      className="w-4.5 h-4.5"
+                    ></RepositoryLinkIcon>
                   )}
 
                   {metadata.demo && (
-                    <a
-                      href={metadata.demo}
-                      className="text-muted hover:text-foreground transition-colors"
-                      title="Demo en vivo"
-                    >
-                      <ExternalLink className="w-4.5 h-4.5" />
-                    </a>
+                    <DemoLinkIcon
+                      title={metadata.title}
+                      url={metadata.demo}
+                      className="w-4.5 h-4.5"
+                    ></DemoLinkIcon>
                   )}
                 </div>
               </div>

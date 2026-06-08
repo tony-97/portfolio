@@ -1,7 +1,8 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import JSONLd from "@/components/jsonld";
+import { DemoLinkIcon, RepositoryLinkIcon } from "@/components/projects";
 import { listProjects } from "@/lib/api";
 import { baseURL } from "@/resources/config";
 import buildPageMetadata from "@/src/lib/seo";
@@ -52,26 +53,18 @@ export default async function ProjectsPage() {
               </h3>
               <div className="flex gap-2.5 ml-3 shrink-0">
                 {metadata.github && (
-                  <a
-                    href={metadata.github}
-                    className="text-muted hover:text-foreground transition-colors"
-                    title="Repositorio en GitHub"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-4 h-4" />
-                  </a>
+                  <RepositoryLinkIcon
+                    url={metadata.github}
+                    title={metadata.title}
+                    className="w-4 h-4"
+                  ></RepositoryLinkIcon>
                 )}
                 {metadata.demo && (
-                  <a
-                    href={metadata.demo}
-                    className="text-muted hover:text-foreground transition-colors"
-                    title="Demo en vivo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  <DemoLinkIcon
+                    url={metadata.demo}
+                    title={metadata.title}
+                    className="w-4 h-4"
+                  ></DemoLinkIcon>
                 )}
               </div>
             </div>
