@@ -14,6 +14,7 @@ const beasties = new Beasties({
   mergeStylesheets: true,
   preload: "media",
   pruneSource: false, // Keep false if using global Tailwind CSS!
+  allowRules: [/^\.dark/, /^\:root/],
 });
 
 // Emulates a basic glob matching strategy recursively
