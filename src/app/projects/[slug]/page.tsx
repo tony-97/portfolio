@@ -86,7 +86,12 @@ export default async function Page({
           )}
           {metadata.image && (
             <div className="relative w-full mb-6 overflow-hidden rounded-xl border border-border">
-              <Image src={image} alt={metadata.title} loading="eager" />
+              <Image
+                src={image}
+                alt={metadata.title}
+                loading="eager"
+                preload={true}
+              />
             </div>
           )}
           {metadata.stack && metadata.stack.length > 0 && (
