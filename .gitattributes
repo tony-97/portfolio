@@ -1,0 +1,2 @@
+# Exclude lighthouse results
+lighthouse_results/** linguist-vendored
