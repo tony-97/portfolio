@@ -52,6 +52,9 @@ jobs:
         with:
           repository: "tony-97/lighthouse-badges"
           path: temp_lighthouse_badges_nested
+      - name: Add permissions
+        run: |
+          chmod -R +x temp_lighthouse_badges_nested/node_modules/
       - uses: myactionway/lighthouse-badger-action@v2.2
         with:
           urls: ${{ github.event.inputs.urls || env.URLS }}
