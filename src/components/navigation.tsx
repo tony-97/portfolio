@@ -1,15 +1,20 @@
 "use client";
 
 import { useLandingPage } from "@/context/landing_page_context";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { AnimatePresence, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Section } from "@/lib/constants";
-import { useTheme } from "next-themes";
+
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const DarkThemeTogle = dynamic(() => import("@/components/toggle_theme"), {
+  ssr: false,
+});
 
 export default function Navigation<T extends React.ElementType[]>({
   sections,
@@ -17,15 +22,9 @@ export default function Navigation<T extends React.ElementType[]>({
   sections: [...{ [K in keyof T]: Omit<Section<T[K]>, "component"> }];
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const { theme, setTheme } = useTheme();
+
   const { activeSection, setNavBarHeight } = useLandingPage();
   const ref = useRef<HTMLElement>(null);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
 
   useEffect(() => {
     const ro = new ResizeObserver(([entry]) => {
@@ -35,7 +34,6 @@ export default function Navigation<T extends React.ElementType[]>({
     if (ref.current) {
       ro.observe(ref.current);
     }
-    setIsClient(true);
     return () => ro.disconnect();
   }, []);
 
@@ -65,7 +63,7 @@ export default function Navigation<T extends React.ElementType[]>({
 
   const features = () => import("@/lib/features").then(({ all }) => all);
   return (
-    <LazyMotion features={features}>
+    <LazyMotion features={features} strict>
       <m.header
         ref={ref}
         initial={{ y: -20, opacity: 0 }}
@@ -117,24 +115,11 @@ export default function Navigation<T extends React.ElementType[]>({
           </ul>
 
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            {isClient && (
-              <button
-                onClick={toggleTheme}
-                aria-label="Cambiar modo oscuro"
-                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-4 h-4" />
-                ) : (
-                  <Moon className="w-4 h-4" />
-                )}
-              </button>
-            )}
+            <DarkThemeTogle />
 
             {/* Mobile Menu Toggle */}
             <button
-              className="md:hidden text-muted-foreground hover:text-foreground focus:outline-none"
+              className="md:hidden relative text-muted-foreground hover:text-foreground focus:outline-none"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Abrir menú"
             >
@@ -143,44 +128,43 @@ export default function Navigation<T extends React.ElementType[]>({
               ) : (
                 <Menu className="w-5 h-5" />
               )}
+              {/* Mobile Menu */}
+              <AnimatePresence>
+                {isMenuOpen && (
+                  <m.nav
+                    aria-label="Menú móvil"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="md:hidden absolute right-1/2 top-1/2 bg-background border border-border px-6 py-4"
+                  >
+                    <ul className="flex flex-col gap-3 text-sm">
+                      {sections.map((section, index) => {
+                        const { href, isActive } = sectionNavigation(section);
+                        return (
+                          <li key={index}>
+                            <Link
+                              href={href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={`block py-1 transition-colors ${
+                                isActive
+                                  ? "text-foreground font-medium"
+                                  : "text-muted-foreground hover:text-foreground"
+                              }`}
+                              aria-current={isActive ? "page" : undefined}
+                            >
+                              {section.label}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </m.nav>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </nav>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <m.nav
-              aria-label="Menú móvil"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-background border-b border-border px-6 py-4"
-            >
-              <ul className="flex flex-col gap-3 text-sm">
-                {sections.map((section, index) => {
-                  const { href, isActive } = sectionNavigation(section);
-                  return (
-                    <li key={index}>
-                      <Link
-                        href={href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`block py-1 transition-colors ${
-                          isActive
-                            ? "text-foreground font-medium"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        {section.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </m.nav>
-          )}
-        </AnimatePresence>
       </m.header>
     </LazyMotion>
   );
