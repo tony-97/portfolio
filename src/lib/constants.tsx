@@ -29,13 +29,19 @@ import {
 
 import { JSX } from "react";
 
-import dynamic from "next/dynamic";
 import HeroSection from "@/components/hero";
+import dynamic from "next/dynamic";
 
 const AboutSection = dynamic(() => import("@/components/about"), { ssr: true });
-const ContactSection = dynamic(() => import("@/components/contact"), { ssr: true });
-const ProjectsSection = dynamic(() => import("@/components/projects"), { ssr: true });
-const SkillsSection = dynamic(() => import("@/components/skills"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/contact"), {
+  ssr: true,
+});
+const ProjectsSection = dynamic(() => import("@/components/projects"), {
+  ssr: true,
+});
+const SkillsSection = dynamic(() => import("@/components/skills"), {
+  ssr: true,
+});
 
 export type Section<T extends React.ElementType> = {
   id: string;
