@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/lib/icons";
 import Link from "next/link";
 
 import JSONLd from "@/components/jsonld";
