@@ -14,6 +14,14 @@
 [![GitHub Pages Deploy](https://img.shields.io/github/actions/workflow/status/tony-97/portfolio/deploy.yml?style=flat&logo=github&label=GitHub%20Pages)](https://github.com/tony-97/portfolio/actions)
 [![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat)](./LICENSE.md)
 
+### 🖥️ Lighthouse — Desktop
+
+[![Desktop Lighthouse PageSpeed Insights](./lighthouse_results/desktop/pagespeed.svg)](https://htmlpreview.github.io/?https://github.com/tony-97/portfolio/blob/master/lighthouse_results/desktop/tony_97_github_io_portfolio_.html)
+
+### 📱 Lighthouse — Mobile
+
+[![Mobile Lighthouse PageSpeed Insights](./lighthouse_results/mobile/pagespeed.svg)](https://htmlpreview.github.io/?https://github.com/tony-97/portfolio/blob/master/lighthouse_results/mobile/tony_97_github_io_portfolio_.html)
+
 </div>
 
 ---
