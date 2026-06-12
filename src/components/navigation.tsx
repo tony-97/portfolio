@@ -1,3 +1,5 @@
+"use client";
+
 import { useLandingPage } from "@/context/landing_page_context";
 import { Menu, X } from "@/lib/icons";
 
