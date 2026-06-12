@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "@/lib/icons";
 
 import Link from "next/link";
 import ScrollAnimation from "./scroll_animation";

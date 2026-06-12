@@ -1,7 +1,6 @@
-"use client";
-
 import { useLandingPage } from "@/context/landing_page_context";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "@/lib/icons";
+
 import { AnimatePresence, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { usePathname } from "next/navigation";

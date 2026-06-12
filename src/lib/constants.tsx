@@ -25,7 +25,7 @@ import {
   Wind,
   Workflow,
   Zap,
-} from "lucide-react";
+} from "@/lib/icons";
 
 import { JSX } from "react";
 

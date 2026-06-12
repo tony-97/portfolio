@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "@/lib/icons";
 import { person } from "../resources/content";
 import ScrollAnimation from "./scroll_animation";
 

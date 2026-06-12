@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Github } from "@/lib/icons";
 import Link from "next/link";
 
 import { listProjects } from "@/lib/api";
