@@ -2,15 +2,13 @@ import { LandingPageProvider } from "@/context/landing_page_context";
 import { sections } from "@/lib/constants";
 import "./globals.css";
 
-import { Navigation } from "@/components/navigation/lazy_nav_bar";
+import Navigation from "@/components/navigation/lazy_nav_bar";
 import { Sections } from "@/components/navigation/nav_links";
-import { NavSkeleton } from "@/components/navigation/skeleton";
 import { baseURL } from "@/resources/config";
 import { person } from "@/resources/content";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,9 +65,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider attribute={"class"}>
           <LandingPageProvider>
-            <Suspense fallback={<NavSkeleton sections={sectionItems} />}>
-              <Navigation sections={sectionItems}></Navigation>
-            </Suspense>
+            <Navigation sections={sectionItems} />
             {children}
           </LandingPageProvider>
           <footer className="py-2 text-center text-sm text-muted-foreground mt-auto bg-surface border-t border-border">

@@ -40,7 +40,7 @@ export default function NavLinks({
   sectionNavigation: (section: (typeof sections)[number]) => NavItemInfo;
 }) {
   return (
-    <ul className={className}>
+    <ul className={`text-sm ${className}`}>
       {sections.map((section) => {
         const { href, isActive } = sectionNavigation(section);
         return (
