@@ -14,7 +14,7 @@ import NavLinks, {
 } from "@/components/navigation/nav_links";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import LogoLink from "./logo_link";
 
 const DarkThemeTogle = dynamic(() => import("@/components/toggle_theme"), {
   ssr: false,
@@ -54,13 +54,7 @@ export default function Navigation({ sections }: { sections: Sections }) {
         className="sticky w-full top-0 z-50 bg-surface-raised/60 backdrop-blur-md border-b border-border"
       >
         <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-tight text-foreground hover:opacity-70"
-          >
-            tony &#123; &#125;
-          </Link>
-
+          <LogoLink />
           {/* Desktop Menu */}
           <NavLinks
             sections={sections}

@@ -2,6 +2,7 @@ import NavLinks, {
   sectionNavigation,
   Sections,
 } from "@/components/navigation/nav_links";
+import LogoLink from "./logo_link";
 
 export function NavSkeleton({ sections }: { sections: Sections }) {
   return (
@@ -10,6 +11,7 @@ export function NavSkeleton({ sections }: { sections: Sections }) {
       style={{ opacity: 0 }}
     >
       <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+        <LogoLink />
         <NavLinks
           sections={sections}
           sectionNavigation={sectionNavigation}
