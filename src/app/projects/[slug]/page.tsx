@@ -87,6 +87,7 @@ export default async function Page({
                 alt={metadata.title}
                 loading="eager"
                 preload={true}
+                placeholder="blur"
               />
             </div>
           )}

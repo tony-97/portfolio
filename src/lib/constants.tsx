@@ -43,10 +43,13 @@ const SkillsSection = dynamic(() => import("@/components/skills"), {
   ssr: true,
 });
 
-export type Section<T extends React.ElementType> = {
+export type SectionBase = {
   id: string;
   label: string;
   path?: string;
+};
+
+export type Section<T extends React.ElementType> = SectionBase & {
   component: T;
   props?: Partial<React.ComponentProps<T>>;
 };
