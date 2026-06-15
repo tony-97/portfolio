@@ -29,9 +29,9 @@ import {
 
 import { JSX } from "react";
 
-import HeroSection from "@/components/hero";
 import dynamic from "next/dynamic";
 
+const HeroSection = dynamic(() => import("@/components/hero"), { ssr: true });
 const AboutSection = dynamic(() => import("@/components/about"), { ssr: true });
 const ContactSection = dynamic(() => import("@/components/contact"), {
   ssr: true,
