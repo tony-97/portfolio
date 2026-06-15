@@ -86,8 +86,8 @@ export default async function Page({
                 src={metadata.image}
                 alt={metadata.title}
                 loading="eager"
+                fetchPriority="high"
                 preload={true}
-                placeholder="blur"
               />
             </div>
           )}
