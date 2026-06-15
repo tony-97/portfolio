@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type ProjectMetadata = {
   title: string;
   description: string;
@@ -8,7 +10,7 @@ export type ProjectMetadata = {
   demo?: string;
   publishedAt: Date;
   lastModified: Date;
-  image: string;
+  image: StaticImageData;
 };
 
 export type ProjectData = {

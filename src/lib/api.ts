@@ -1,5 +1,6 @@
 import { ProjectData } from "@/interfaces/project";
-import fs from "fs/promises";
+import fg from "fast-glob";
+
 import path from "path";
 
 export async function getProject(slug: string): Promise<ProjectData> {
@@ -15,9 +16,7 @@ export async function getProject(slug: string): Promise<ProjectData> {
 export async function listProjects(): Promise<
   Omit<ProjectData, "component">[]
 > {
-  const files = await fs.readdir(
-    path.join(process.cwd(), "src/content/projects"),
-  );
+  const files = await fg("src/content/projects/*.mdx", { cwd: process.cwd() });
 
   return Promise.all(
     files.map(async (file) => {

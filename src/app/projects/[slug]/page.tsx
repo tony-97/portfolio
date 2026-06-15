@@ -37,7 +37,7 @@ export async function generateMetadata(
       modifiedTime: metadata.lastModified.toDateString(),
       tags: metadata.stack,
       section: "Casos de Estudio",
-      images: [{ url: metadata.image }],
+      images: [{ url: metadata.image.src }],
     },
   });
 }
@@ -50,10 +50,6 @@ export default async function Page({
   const { slug } = await params;
   const { metadata, component: MDXComponent } = await getProject(
     decodeURIComponent(slug),
-  );
-  const dynamicPart = metadata.image.replace("/images/projects/", "");
-  const { default: image } = await import(
-    `@/public/images/projects/${dynamicPart}`
   );
 
   const jsonLd = {
@@ -87,7 +83,7 @@ export default async function Page({
           {metadata.image && (
             <div className="relative w-full mb-6 overflow-hidden rounded-xl border border-border">
               <Image
-                src={image}
+                src={metadata.image}
                 alt={metadata.title}
                 loading="eager"
                 preload={true}
