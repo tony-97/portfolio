@@ -13,7 +13,7 @@ export default function HeroSection({ id }: { id: string }) {
         /* Dark: deep radial from near-black to dark stone */
         "dark:from-stone-950 dark:via-stone-950 dark:to-stone-900",
         "relative overflow-hidden",
-        "border-b border-border",
+        "border-b border-border [overflow-anchor:none]",
       ].join(" ")}
     >
       {/* Decorative blurred blob — light */}
