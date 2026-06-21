@@ -7,7 +7,12 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["192.168.18.21"],
   /* config options here */
+  reactCompiler: {
+    compilationMode: "all",
+    panicThreshold: "all_errors",
+  },
   output: "export",
   basePath: process.env.PAGES_BASE_PATH,
   images: { unoptimized: true },

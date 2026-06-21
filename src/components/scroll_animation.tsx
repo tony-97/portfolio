@@ -4,6 +4,7 @@ import { useLandingPage } from "@/context/landing_page_context";
 import { LazyMotion, useInView } from "motion/react";
 import * as m from "motion/react-m";
 import { CSSProperties, ReactNode, useEffect, useRef } from "react";
+import { animationFeaturesLoader } from "../lib/lazy_loaders";
 
 export default function ScrollAnimation({
   id,
@@ -31,10 +32,9 @@ export default function ScrollAnimation({
       setActiveSection(ref.current.id);
     }
   }, [isInview]);
-  const features = () =>
-    import("@/lib/features").then(({ animation }) => animation);
+
   return (
-    <LazyMotion features={features} strict>
+    <LazyMotion features={animationFeaturesLoader} strict>
       <m.section
         id={id}
         ref={ref}

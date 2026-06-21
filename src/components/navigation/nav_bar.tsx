@@ -13,10 +13,11 @@ import NavLinks, {
   Sections,
 } from "@/components/navigation/nav_links";
 
+import { allFeaturesLoader, themeButtonLoader } from "@/src/lib/lazy_loaders";
 import dynamic from "next/dynamic";
 import LogoLink from "./logo_link";
 
-const DarkThemeTogle = dynamic(() => import("@/components/toggle_theme"), {
+const DarkThemeTogle = dynamic(themeButtonLoader, {
   ssr: false,
 });
 
@@ -42,10 +43,8 @@ export default function Navigation({ sections }: { sections: Sections }) {
     return sectionNavigation(section, pathname, activeSection);
   };
 
-  const features = () => import("@/lib/features").then(({ all }) => all);
-
   return (
-    <LazyMotion features={features} strict>
+    <LazyMotion features={allFeaturesLoader} strict>
       <m.header
         ref={ref}
         initial={{ y: -20, opacity: 0 }}
