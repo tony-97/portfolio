@@ -49,6 +49,36 @@
   }
 }
 
+@keyframes scale {
+  to {
+    mask-size: 350vmax;
+  }
+}
+
+::view-transition-group(root) {
+  animation-timing-function: ease-out;
+}
+
+::view-transition-new(root) {
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>')
+    top left / 0 no-repeat;
+  mask-origin: content-box;
+  animation: scale 1s forwards;
+  transform-origin: top left;
+  animation-fill-mode: forwards;
+}
+
+::view-transition-old(root),
+.dark::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
+}
+
+.dark::view-transition-new(root) {
+  animation: scale 1s forwards;
+  animation-fill-mode: forwards;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;

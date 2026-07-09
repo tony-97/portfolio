@@ -9,9 +9,16 @@ export default function ThemeToggleButton() {
     const newTheme = resolvedTheme === "dark" ? "light" : "dark";
     setTheme(newTheme);
   };
+  const toggleThemeTransition = () => {
+    if (!document.startViewTransition) {
+      toggleTheme();
+    } else {
+      document.startViewTransition(toggleTheme);
+    }
+  };
   return (
     <button
-      onClick={toggleTheme}
+      onClick={toggleThemeTransition}
       aria-label="Cambiar modo oscuro"
       className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
     >
